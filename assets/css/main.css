@@ -71,7 +71,6 @@ a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-ra
   border-bottom: 1px solid var(--border);
 }
 .header-inner {
-  max-width: 64rem;
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
   gap: .5rem 1.5rem; padding-top: .85rem; padding-bottom: .85rem;
 }
