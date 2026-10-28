@@ -6,9 +6,37 @@
 <body>
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
   {% include header.html %}
-  <main id="main" class="wrap">
-    {{ content }}
-  </main>
+  <div class="shell layout">
+    {% include sidebar.html %}
+    <main id="main" class="content">
+      {{ content }}
+    </main>
+  </div>
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
   {% include footer.html %}
+  <script>
+    // 사이드바 접기/펴기. 데스크톱에서 고른 상태만 기억하고, 좁은 화면은 항상 접힌 채로 시작한다.
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById('sidebar-toggle');
+      var backdrop = document.getElementById('sidebar-backdrop');
+      var narrow = window.matchMedia('(max-width: 900px)');
+      function saved() { try { return localStorage.getItem('sidebar'); } catch (e) { return null; } }
+      function set(state, remember) {
+        root.setAttribute('data-sidebar', state);
+        btn.setAttribute('aria-expanded', state === 'open' ? 'true' : 'false');
+        if (remember && !narrow.matches) { try { localStorage.setItem('sidebar', state); } catch (e) {} }
+      }
+      set(root.getAttribute('data-sidebar') || 'open', false);
+      btn.addEventListener('click', function () {
+        set(root.getAttribute('data-sidebar') === 'open' ? 'closed' : 'open', true);
+      });
+      backdrop.addEventListener('click', function () { set('closed', false); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && narrow.matches && root.getAttribute('data-sidebar') === 'open') { set('closed', false); btn.focus(); }
+      });
+      narrow.addEventListener('change', function () { set(narrow.matches ? 'closed' : (saved() || 'open'), false); });
+    })();
+  </script>
 </body>
 </html>

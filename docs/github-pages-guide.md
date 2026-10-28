@@ -124,11 +124,11 @@ github_username: "0ni0n-t"  # 푸터·About 의 GitHub 링크
 4. 각 카테고리의 `[안내]` 글에 작성 템플릿이 있다.
 5. 미래 날짜의 글은 기본 설정에서 빌드되지 않으므로 날짜를 오늘 이하로 둔다.
 
-**새 카테고리·메뉴 추가**
+**새 카테고리 추가**
 
 1. `categories/새slug.md` 를 만든다(`layout: category`, `category_slug: 새slug`, `permalink: /categories/새slug/`).
-2. `_config.yml` 의 `category_names` 에 `새slug: "표시 이름"` 을 추가한다.
-3. `_data/navigation.yml` 에 `- title: "표시 이름"` / `url: /categories/새slug/` 를 추가한다. 헤더 메뉴가 이 파일을 반복해 그린다.
+2. `_config.yml` 의 `category_names` 에 `새slug: "표시 이름"` 을 추가한다. 왼쪽 사이드바가 이 목록을 순서대로 그리고 글 수를 붙인다.
+3. 상단 메뉴(`_data/navigation.yml`)에는 Roadmap·About 같은 페이지만 둔다. 사이드바는 헤더 왼쪽 버튼으로 접고 편다(데스크톱은 상태를 기억, 모바일은 서랍).
 
 ## 7. 커스텀 도메인과 HTTPS 개요
 

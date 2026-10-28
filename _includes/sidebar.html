@@ -1,0 +1,15 @@
+{%- comment -%}
+  카테고리 사이드바. 목록은 _config.yml 의 category_names 순서를 따른다.
+  새 카테고리는 category_names 와 categories/새slug.md 만 추가하면 여기에 나온다.
+{%- endcomment -%}
+<aside id="sidebar" class="sidebar" aria-label="카테고리">
+  <p class="sidebar-title">Categories</p>
+  <ul class="side-list">
+    {%- for c in site.category_names %}
+    {%- assign slug = c[0] %}
+    {%- assign cat_path = '/categories/' | append: slug | append: '/' %}
+    {%- assign n = site.categories[slug] | size %}
+    <li><a href="{{ cat_path | relative_url }}"{% if page.url == cat_path %} class="active" aria-current="page"{% elsif page.categories contains slug %} class="active"{% endif %}><span>{{ c[1] }}</span><span class="count">{{ n }}</span></a></li>
+    {%- endfor %}
+  </ul>
+</aside>
