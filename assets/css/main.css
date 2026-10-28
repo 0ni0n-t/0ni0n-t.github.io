@@ -85,6 +85,7 @@ a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-ra
 .nav-toggle-label { display: none; font-size: .9rem; color: var(--muted); cursor: pointer; user-select: none; }
 
 .site-nav ul { list-style: none; margin: 0 0 0 -.4rem; padding: 0; display: flex; flex-wrap: wrap; gap: .1rem 0; }
+.site-nav li { margin: 0; }
 .site-nav a {
   display: block; padding: .2rem .4rem; border-radius: 6px;
   font-size: .875rem; color: var(--muted); white-space: nowrap;
