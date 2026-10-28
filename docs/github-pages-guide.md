@@ -128,7 +128,7 @@ github_username: "0ni0n-t"  # 푸터·About 의 GitHub 링크
 
 1. `categories/새slug.md` 를 만든다(`layout: category`, `category_slug: 새slug`, `permalink: /categories/새slug/`).
 2. `_config.yml` 의 `category_names` 에 `새slug: "표시 이름"` 을 추가한다. 왼쪽 사이드바가 이 목록을 순서대로 그리고 글 수를 붙인다.
-3. 상단 메뉴(`_data/navigation.yml`)에는 Roadmap·About 같은 페이지만 둔다. 사이드바는 헤더 왼쪽 버튼으로 접고 편다(데스크톱은 상태를 기억, 모바일은 서랍).
+3. 상단 메뉴(`_data/navigation.yml`)에는 About 같은 페이지만 둔다. 사이드바는 헤더 왼쪽 버튼으로 접고 편다(데스크톱은 상태를 기억, 모바일은 서랍).
 
 ## 7. 커스텀 도메인과 HTTPS 개요
 
@@ -160,5 +160,5 @@ github_username: "0ni0n-t"  # 푸터·About 의 GitHub 링크
 3. 새 저장소 생성 → `blog/` 내용을 루트로 복사 → push
 4. Settings → Pages 에서 배포 소스 선택
 5. `_config.yml` 의 `url`·`github_username` 이 실제 계정과 같은지 확인(현재 `0ni0n-t`), 다르면 고쳐 다시 push
-6. 사이트 주소에서 메뉴 9개(홈, 카테고리 6개, Roadmap, About)와 CSS 가 정상인지 확인
-7. `roadmap.md` 와 이 문서의 "(미확인)" 항목을 공식 문서로 확인해 갱신
+6. 사이트 주소에서 사이드바 카테고리 6개, 상단 About, CSS 가 정상인지 확인
+7. 이 문서의 "(미확인)" 항목을 공식 문서로 확인해 갱신

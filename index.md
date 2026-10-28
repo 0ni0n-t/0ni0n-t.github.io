@@ -12,7 +12,7 @@ title: Home
   <p class="out">모르는 것을 배우기 위해 노력하겠습니다</p>
 </div>
 
-배우면서 정리한 것을 남기는 보안 블로그입니다. [About]({{ '/about/' | relative_url }}) · [클라우드 보안 로드맵]({{ '/roadmap/' | relative_url }})
+배우면서 정리한 것을 남기는 보안 블로그입니다. [About]({{ '/about/' | relative_url }})
 
 ## 최근 글
 
