@@ -16,6 +16,7 @@ title: Home
 
 ## 최근 글
 
+{% if site.posts.size > 0 %}
 <ul class="post-list">
 {% for post in site.posts limit:10 %}
   <li>
@@ -24,3 +25,6 @@ title: Home
   </li>
 {% endfor %}
 </ul>
+{% else %}
+<p class="muted">아직 글이 없습니다.</p>
+{% endif %}
