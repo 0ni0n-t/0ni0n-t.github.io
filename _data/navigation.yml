@@ -1,7 +1,5 @@
-# 상단 메뉴. _includes/header.html 이 이 목록을 반복해 그린다.
+# 상단 메뉴. _includes/header.html 이 이 목록을 반복해 그린다. 홈은 왼쪽 로고가 링크한다.
 # 항목을 추가하려면 title 과 url 을 한 쌍 더 적는다. url 은 baseurl 없이 / 로 시작한다.
-- title: "Home"
-  url: /
 - title: "개발"
   url: /categories/dev/
 - title: "CTF/Wargame"
