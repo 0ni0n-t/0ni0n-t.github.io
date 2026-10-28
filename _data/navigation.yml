@@ -1,0 +1,20 @@
+# 상단 메뉴. _includes/header.html 이 이 목록을 반복해 그린다.
+# 항목을 추가하려면 title 과 url 을 한 쌍 더 적는다. url 은 baseurl 없이 / 로 시작한다.
+- title: "~/home"
+  url: /
+- title: "개발"
+  url: /categories/dev/
+- title: "CTF/Wargame"
+  url: /categories/ctf-wargame/
+- title: "Bug Bounty"
+  url: /categories/bug-bounty/
+- title: "블로그/기술문서"
+  url: /categories/tech-docs/
+- title: "논문/컨퍼런스"
+  url: /categories/papers-conferences/
+- title: "공모전/자격증"
+  url: /categories/contests-certs/
+- title: "Roadmap"
+  url: /roadmap/
+- title: "About"
+  url: /about/

@@ -1,0 +1,53 @@
+# ------------------------------------------------------------
+# 0ni0n__T 보안 블로그 — Jekyll 설정
+# 외부 테마를 쓰지 않는다. 레이아웃·CSS는 _layouts/, _includes/, assets/css/ 에 있다.
+# ------------------------------------------------------------
+
+title: "0ni0n__T :: security log"
+author: "0ni0n__T"
+description: "클라우드 보안을 향해 배우는 과정을 기록하는 블로그"
+lang: ko
+
+# GitHub 계정 0ni0n-t 의 사용자 사이트(0ni0n-t.github.io 저장소) 기준. 자세한 방법은 docs/github-pages-guide.md 참고.
+# GitHub 계정명에는 밑줄을 쓸 수 없어 표시 이름(0ni0n__T)과 계정명(0ni0n-t)이 다르다.
+#  - 프로젝트 사이트(예: 저장소 이름이 blog)로 올릴 때는 baseurl: "/blog"
+url: "https://0ni0n-t.github.io"
+baseurl: ""
+
+# 공개 연락처. 이메일은 공개하지 않는다(GitHub 링크만 노출).
+github_username: "0ni0n-t"
+
+markdown: kramdown
+permalink: /:categories/:year/:month/:day/:title/
+timezone: Asia/Seoul
+
+# 카테고리 slug → 표시 이름 (category 레이아웃·글 목록에서 사용)
+category_names:
+  dev: "개발"
+  ctf-wargame: "CTF / Wargame"
+  bug-bounty: "Bug Bounty"
+  tech-docs: "블로그 / 기술문서"
+  papers-conferences: "논문 / 컨퍼런스"
+  contests-certs: "공모전 / 자격증"
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+
+# 사이트 빌드에서 뺄 파일. docs/ 는 저장소용 안내 문서라 사이트에 섞지 않는다.
+exclude:
+  - docs/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor/
+  - .bundle/
+  - .jekyll-cache/
