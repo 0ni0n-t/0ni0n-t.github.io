@@ -1,0 +1,23 @@
+{%- comment -%} 글 목록표. include.posts 는 글 배열, include.limit 은 최대 개수, include.empty 는 글이 없을 때의 문구다. {%- endcomment -%}
+<div class="table-box">
+  <table class="flow">
+    <thead>
+      <tr><th scope="col">일자</th><th scope="col">서브넷</th><th scope="col">상태</th><th scope="col">글 제목</th></tr>
+    </thead>
+    <tbody>
+      {%- if include.posts and include.posts.size > 0 %}
+      {%- for post in include.posts limit: include.limit %}
+      {%- assign cat = post.categories | first %}
+      <tr>
+        <td class="nowrap"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time></td>
+        <td>{{ site.category_names[cat] | default: cat }}</td>
+        <td class="accept">ACCEPT</td>
+        <td><a href="{{ post.url | relative_url }}">{{ post.title }}</a></td>
+      </tr>
+      {%- endfor %}
+      {%- else %}
+      <tr><td colspan="4">{{ include.empty }}</td></tr>
+      {%- endif %}
+    </tbody>
+  </table>
+</div>

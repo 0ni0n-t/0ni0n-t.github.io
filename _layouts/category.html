@@ -1,26 +1,18 @@
 ---
 layout: default
 ---
-{% assign slug = page.category_slug %}
-{% assign posts = site.categories[slug] %}
+{%- assign slug = page.category_slug -%}
+{%- assign subnet = site.data.subnets | where: "slug", slug | first -%}
+{%- assign posts = site.categories[slug] -%}
 <section class="category">
-  <header class="page-head">
-    <h1>{{ page.title }}</h1>
-  </header>
-  <div class="content">
+  <nav class="crumb" aria-label="현재 위치"><a href="{{ '/' | relative_url }}">VPC 0ni0n__T</a> / 서브넷 {{ subnet.cidr }}</nav>
+  <h1 class="page-title">{{ page.title }}</h1>
+  <div class="lead-text">
     {{ content }}
   </div>
-  <h2 class="section-title">글 목록</h2>
-  {% if posts and posts.size > 0 %}
-  <ul class="post-list">
-    {% for post in posts %}
-    <li>
-      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time>
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    </li>
-    {% endfor %}
-  </ul>
-  {% else %}
-  <p class="muted">아직 글이 없습니다. <code>_posts/</code> 에 <code>category: {{ slug }}</code> 글을 추가하세요.</p>
-  {% endif %}
+  <div class="sheet">
+    {% include sg.html subnet=subnet %}
+  </div>
+  <h2 class="band-title">Flow Logs: 이 서브넷의 글</h2>
+  {% include flow-logs.html posts=posts limit=100 empty="기록 없음. 아직 공개한 글은 없습니다." %}
 </section>

@@ -1,21 +1,10 @@
 ---
 layout: default
 ---
-<article class="post">
-  <header class="page-head">
-    <h1>{{ page.title }}</h1>
-    <p class="meta">
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y-%m-%d' }}</time>
-      {% for c in page.categories %}
-      <a class="tag" href="{{ '/categories/' | append: c | append: '/' | relative_url }}">#{{ site.category_names[c] | default: c }}</a>
-      {% endfor %}
-    </p>
-  </header>
-  <div class="content">
-    {{ content }}
-  </div>
-  <nav class="post-nav">
-    {% if page.previous %}<a href="{{ page.previous.url | relative_url }}">&larr; {{ page.previous.title }}</a>{% endif %}
+<article class="post prose">
+  {{ content }}
+  <nav class="post-nav" aria-label="이전·다음 글">
+    {% if page.previous %}<a href="{{ page.previous.url | relative_url }}">&larr; {{ page.previous.title }}</a>{% else %}<span></span>{% endif %}
     {% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title }} &rarr;</a>{% endif %}
   </nav>
 </article>

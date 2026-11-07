@@ -128,6 +128,7 @@ github_username: "0ni0n-t"  # 푸터·About 의 GitHub 링크
 
 1. `categories/새slug.md` 를 만든다(`layout: category`, `category_slug: 새slug`, `permalink: /categories/새slug/`).
 2. `_config.yml` 의 `category_names` 에 `새slug: "표시 이름"` 을 추가한다. 왼쪽 사이드바가 이 목록을 순서대로 그리고 글 수를 붙인다.
+   - `_data/subnets.yml` 에도 같은 slug 로 서브넷 항목(`name`, `cidr`, `allow`, `deny`)을 추가한다. 홈 구성도와 보안 그룹 규칙이 이 파일을 읽는다.
 3. 상단 메뉴(`_data/navigation.yml`)에는 About 같은 페이지만 둔다. 사이드바는 헤더 왼쪽 버튼으로 접고 편다(데스크톱은 상태를 기억, 모바일은 서랍).
 
 ## 7. 커스텀 도메인과 HTTPS 개요

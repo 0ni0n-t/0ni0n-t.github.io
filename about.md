@@ -1,12 +1,9 @@
 ---
+layout: about
 title: About
 permalink: /about/
-description: 0ni0n__T
+description: 웹 해킹을 계기로 보안을 시작해 AWS 취업을 목표로 클라우드 보안을 공부하는 0ni0n__T를 소개합니다.
 ---
-
-## 이름
-
-- 닉네임: **0ni0n__T**
 
 ## 보안을 시작한 계기
 
@@ -15,12 +12,12 @@ description: 0ni0n__T
 
 ## 목표
 
-**AWS 취업** — 클라우드 보안을 향해 공부하고 있습니다.
+**AWS 취업**을 목표로 클라우드 보안을 공부하고 있습니다.
 
 ## 다짐
 
-> 모르는 것을 배우기 위해 노력하겠습니다.
+모르는 것을 배우기 위해 노력하겠습니다.
 
 ## 연락
 
-- GitHub: [{{ site.github_username }}](https://github.com/{{ site.github_username }})
+GitHub: [{{ site.github_username }}](https://github.com/{{ site.github_username }})

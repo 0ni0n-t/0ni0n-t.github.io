@@ -1,0 +1,46 @@
+# VPC 구성도의 서브넷 정의. slug 는 _config.yml 의 category_names 와 같아야 한다.
+# allow, deny 는 그 카테고리에 올리는 글과 올리지 않는 글의 기준이다. 구성도 값(CIDR, sg)은 실제 AWS 자원이 아니다.
+- slug: dev
+  name: 개발
+  cidr: 10.0.1.0/24
+  allow:
+    - 웹과 클라우드 프로젝트의 설계와 구현
+    - 보안 관점에서 고친 점
+  deny: []
+- slug: ctf-wargame
+  name: CTF / Wargame
+  cidr: 10.0.2.0/24
+  allow:
+    - 종료되었고 공개가 허용된 문제
+  deny:
+    - 진행 중인 대회의 문제
+    - 풀이 공개가 허용되지 않은 문제
+- slug: bug-bounty
+  name: Bug Bounty
+  cidr: 10.0.3.0/24
+  allow:
+    - 공부 방법과 방법론
+    - 프로그램 정책상 공개가 허용된 내용
+  deny:
+    - 제보 전이거나 공개 승인이 없는 취약점의 세부 정보
+- slug: tech-docs
+  name: 블로그 / 기술문서
+  cidr: 10.0.4.0/24
+  allow:
+    - 개념 정리와 도구 사용법
+    - 공식 문서 요약과 원문 링크
+  deny: []
+- slug: papers-conferences
+  name: 논문 / 컨퍼런스
+  cidr: 10.0.5.0/24
+  allow:
+    - 보안 논문과 컨퍼런스 발표 정리
+    - 원문 링크, 요약과 내 생각의 구분
+  deny: []
+- slug: contests-certs
+  name: 공모전 / 자격증
+  cidr: 10.0.6.0/24
+  allow:
+    - 공모전 참여 과정과 자격증 공부 기록
+    - 준비하면서 배운 점
+  deny: []

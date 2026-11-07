@@ -1,0 +1,10 @@
+{%- comment -%} 보안 그룹 규칙표. include.subnet 은 _data/subnets.yml 의 항목이다. {%- endcomment -%}
+<h2 class="sg-title">보안 그룹 sg-{{ include.subnet.slug }}</h2>
+<dl class="rules">
+  {%- for r in include.subnet.allow %}
+  <div><dt class="allow">ALLOW</dt><dd>{{ r }}</dd></div>
+  {%- endfor %}
+  {%- for r in include.subnet.deny %}
+  <div><dt class="deny">DENY</dt><dd>{{ r }}</dd></div>
+  {%- endfor %}
+</dl>

@@ -1,0 +1,96 @@
+---
+layout: default
+---
+<section class="hero">
+  <h1>이 블로그는 VPC입니다.<br>카테고리 6개가 서브넷입니다.</h1>
+  <p>서브넷을 고르면 트래픽 경로와 보안 그룹 규칙이 바뀝니다. 규칙은 그 카테고리에 무엇을 올리고 무엇을 올리지 않는지 정합니다.</p>
+</section>
+
+<section class="diagram" aria-label="블로그 네트워크 구성도">
+  <p class="chip chip-white">방문자 0.0.0.0/0</p>
+  <div class="wire-short"></div>
+  <p class="chip chip-orange">인터넷 게이트웨이 igw-0ni0n</p>
+  <div class="wire-short"></div>
+  <div class="vpc">
+    <p class="vpc-label">VPC 0ni0n__T 10.0.0.0/16</p>
+    <div class="bus"></div>
+    <div class="subnets">
+      {%- for s in site.data.subnets %}
+      <div class="subnet-col{% if s.slug == 'bug-bounty' %} on{% endif %}" data-subnet="{{ s.slug }}">
+        <div class="drop"><span class="packet"></span></div>
+        <a class="subnet" href="{{ '/categories/' | append: s.slug | append: '/' | relative_url }}"{% if s.slug == 'bug-bounty' %} aria-current="true"{% endif %}>
+          <span class="subnet-name">{{ s.name }}</span>
+          <span class="subnet-cidr">{{ s.cidr }}</span>
+        </a>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="detail">
+  <div class="sheet panels" aria-live="polite">
+    {%- for s in site.data.subnets %}
+    {%- assign n = site.categories[s.slug] | size %}
+    <div class="panel" data-panel="{{ s.slug }}"{% unless s.slug == 'bug-bounty' %} hidden{% endunless %}>
+      {% include sg.html subnet=s %}
+      <p class="panel-name">{{ s.name }}</p>
+      <h3 class="sg-title">라우트 테이블 rtb-{{ s.slug }}</h3>
+      <table class="routes">
+        <thead><tr><th scope="col">대상</th><th scope="col">타깃</th></tr></thead>
+        <tbody>
+          <tr><td>10.0.0.0/16</td><td>local</td></tr>
+          <tr><td>0.0.0.0/0</td><td>igw-0ni0n</td></tr>
+        </tbody>
+      </table>
+      <a class="panel-link" href="{{ '/categories/' | append: s.slug | append: '/' | relative_url }}">이 서브넷의 글 보기 ({{ n }}편)</a>
+    </div>
+    {%- endfor %}
+  </div>
+  <div class="policy-box">
+    <h2 class="band-title">자기소개: IAM 정책</h2>
+    <pre class="policy"><code>{
+  "Principal": "{{ site.author }}",
+  "Origin": "웹 공부를 하다가 만든 사이트를 친구가 해킹하는 것을 보았습니다. 그것을 막는 방법을 찾다가 보안에 관심을 갖게 되었습니다.",
+  "Goal": "AWS 취업, 클라우드 보안",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "learn:*",
+      "Resource": "모르는 것"
+    }
+  ]
+}</code></pre>
+  </div>
+</section>
+
+<section class="home-block">
+  <h2 class="band-title">공부 범위</h2>
+  <p>애플리케이션과 API, 데이터, ID와 권한, 클라우드 서비스, 쿠버네티스, 컨테이너와 런타임, 네트워크, OS와 커널, 하이퍼바이저와 하드웨어를 공부합니다. 공격과 탐지, 사고 대응과 포렌식은 모든 층에 걸쳐 함께 기록합니다.</p>
+</section>
+
+<section class="home-block home-block--wide">
+  <h2 class="band-title">Flow Logs: 최근 글</h2>
+  {% include flow-logs.html posts=site.posts limit=10 empty="기록 없음. 아직 공개한 글은 없습니다. 직접 공부하고 실습한 내용부터 올리겠습니다." %}
+</section>
+
+<script>
+  // 서브넷을 누르면 경로와 규칙만 바꾼다. 스크립트가 없으면 링크대로 카테고리 페이지로 이동한다.
+  (function () {
+    var cols = document.querySelectorAll('.subnet-col');
+    var panels = document.querySelectorAll('.panel');
+    cols.forEach(function (col) {
+      col.querySelector('.subnet').addEventListener('click', function (e) {
+        e.preventDefault();
+        var slug = col.getAttribute('data-subnet');
+        cols.forEach(function (c) {
+          var on = c === col;
+          c.classList.toggle('on', on);
+          var link = c.querySelector('.subnet');
+          if (on) { link.setAttribute('aria-current', 'true'); } else { link.removeAttribute('aria-current'); }
+        });
+        panels.forEach(function (p) { p.hidden = p.getAttribute('data-panel') !== slug; });
+      });
+    });
+  })();
+</script>

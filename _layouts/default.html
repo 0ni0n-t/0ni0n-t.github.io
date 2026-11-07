@@ -3,9 +3,23 @@
 <head>
 {% include head.html %}
 </head>
-<body>
+<body{% if page.layout == 'post' %} class="on-white"{% endif %}>
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
   {% include header.html %}
+  {%- if page.layout == 'post' %}
+  {%- assign cat = page.categories | first %}
+  {%- assign subnet = site.data.subnets | where: "slug", cat | first %}
+  <div class="masthead">
+    <div class="shell post-head">
+      <nav class="crumb" aria-label="현재 위치"><a href="{{ '/' | relative_url }}">VPC 0ni0n__T</a> / {% if subnet %}<a href="{{ '/categories/' | append: cat | append: '/' | relative_url }}">서브넷 {{ subnet.cidr }}</a> / {% endif %}글</nav>
+      <h1>{{ page.title }}</h1>
+      <dl class="post-meta">
+        {%- if subnet %}<div><dt>Subnet</dt><dd>{{ subnet.name }}</dd></div>{% endif %}
+        <div><dt>Date</dt><dd><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y-%m-%d' }}</time></dd></div>
+      </dl>
+    </div>
+  </div>
+  {%- endif %}
   <div class="shell layout">
     {% include sidebar.html %}
     <main id="main" class="content">
