@@ -281,6 +281,7 @@
   }
   function renderSheet() {
     var top = sheet.scrollTop;
+    document.body.dataset.reading = state.post || state.view === 'about' ? 'yes' : 'no';
     sheet.replaceChildren();
     if (state.panel === 'closed') return;
     sheet.append(sheetTools());
@@ -472,40 +473,45 @@
     return best;
   }
   var LINK_Y = 2.15;
+  /* 줄 사이 통로 폭을 정한다. 라우터와 가운데 서브넷 사이가 1m 남짓 비도록 둔다. */
+  var ROW_Z = 2.65;
+  var GW_Z = 5.4;
+  var SLAB = .26;
+  var STACK_MAX = 12;
   function edgeAt(w, h, d, color, x, y, z) { var e = edgeOf(w, h, d, color); e.position.set(x, y, z); return e; }
   function edgeOf(w, h, d, color) { return new T.LineSegments(new T.EdgesGeometry(new T.BoxGeometry(w, h, d)), new T.LineBasicMaterial({ color: color })); }
 
   function buildWorld() {
     scene = new T.Scene();
-    scene.add(new T.AmbientLight(0xffffff, .62));
+    scene.add(new T.AmbientLight(0xffffff, .78));
     var key = new T.DirectionalLight(0xffe0c7, .85); key.position.set(4, 8, 6); scene.add(key);
     var fill = new T.DirectionalLight(0xb7c7d6, .4); fill.position.set(-6, 2, -3); scene.add(fill);
-    scene.add(box(12.4, .12, 7.6, mat(0x1f3a55, { transparent: true, opacity: .72 }), 0, 0, 0));
-    scene.add(edgeOf(12.4, .12, 7.6, 0xffffff));
+    scene.add(box(13, .12, 9, mat(0x1f3a55, { transparent: true, opacity: .72 }), 0, 0, 0));
+    scene.add(edgeOf(13, .12, 9, 0xffffff));
     var wireMat = mat(0xc7d2dc);
     var hotMat = new T.MeshBasicMaterial({ color: 0xf4b183 });
-    scene.add(beam(V(-4, .14, 0), V(4, .14, 0), .03, wireMat));
-    scene.add(box(1.4, 1, .5, mat(0xf4b183), 0, .5, 4.4));
-    addLabel('인터넷 게이트웨이 igw-0ni0n', 'hot', V(0, 1.25, 4.4));
-    var visitor = new T.Mesh(new T.SphereGeometry(.2, 16, 16), mat(0xffffff)); visitor.position.set(0, 1.4, 6.4);
-    scene.add(visitor, beam(V(0, 1.4, 6.4), V(0, .6, 4.4), .02, wireMat));
+    scene.add(beam(V(-4.2, .14, 0), V(4.2, .14, 0), .03, wireMat));
+    scene.add(box(1.4, 1, .5, mat(0xf4b183), 0, .5, GW_Z));
+    addLabel('인터넷 게이트웨이 igw-0ni0n', 'hot', V(0, 1.25, GW_Z));
+    var visitor = new T.Mesh(new T.SphereGeometry(.2, 16, 16), mat(0xffffff)); visitor.position.set(0, 1.4, GW_Z + 2);
+    scene.add(visitor, beam(V(0, 1.4, GW_Z + 2), V(0, .6, GW_Z), .02, wireMat));
     /* 게이트웨이 → 라우터: 앞줄 서브넷 위를 넘어 가운데 라우터로 들어간다. 라우터에서 각 카테고리로 갈라진다. */
-    scene.add(beam(V(0, 1, 4.4), V(0, LINK_Y, 4.4), .03, wireMat), beam(V(0, LINK_Y, 4.4), V(0, LINK_Y, 0), .03, wireMat), beam(V(0, LINK_Y, 0), V(0, .8, 0), .03, wireMat));
+    scene.add(beam(V(0, 1, GW_Z), V(0, LINK_Y, GW_Z), .03, wireMat), beam(V(0, LINK_Y, GW_Z), V(0, LINK_Y, 0), .03, wireMat), beam(V(0, LINK_Y, 0), V(0, .8, 0), .03, wireMat));
     scene.add(box(1.1, .7, .62, mat(0xe6cf9f), 0, .45, 0), edgeAt(1.1, .7, .62, 0xffffff, 0, .45, 0));
     addLabel('라우터 rtb-0ni0n', 'router', V(0, 1.15, 0));
-    addLabel('방문자 0.0.0.0/0', '', V(0, 1.85, 6.4));
-    addLabel('VPC 0ni0n__T 10.0.0.0/16', 'main', V(-3.4, .15, 3.95));
+    addLabel('방문자 0.0.0.0/0', '', V(0, 1.85, GW_Z + 2));
+    addLabel('VPC 0ni0n__T 10.0.0.0/16', 'main', V(-3.6, .15, 4.65));
 
-    var spots = [[-4, -1.95], [0, -1.95], [4, -1.95], [-4, 1.95], [0, 1.95], [4, 1.95]];
+    var spots = [[-4.2, -ROW_Z], [0, -ROW_Z], [4.2, -ROW_Z], [-4.2, ROW_Z], [0, ROW_Z], [4.2, ROW_Z]];
     var pickable = [];
     var nets = CATS.map(function (c, i) {
       var x = spots[i][0]; var z = spots[i][1];
-      var netMat = mat(0x3f6080);
+      var netMat = mat(0x4d7396);
       var plate = box(3.7, .2, 3.1, netMat, x, .2, z);
       plate.userData = { cat: i, sub: null };
       scene.add(plate); pickable.push(plate);
       var edge = edgeOf(3.7, .2, 3.1, 0xc7d2dc); edge.position.copy(plate.position); scene.add(edge);
-      scene.add(beam(V(x, .14, 0), V(x, .14, z > 0 ? .4 : -.4), .022, wireMat));
+      scene.add(beam(V(x, .14, 0), V(x, .14, z > 0 ? ROW_Z - 1.55 : 1.55 - ROW_Z), .022, wireMat));
       var main = addLabel(c.name + ' · ' + c.subs.length, 'main', V(x + (x === 0 && z > 0 ? 1.15 : 0), .75, z - 1.72));
       var cols = c.subs.length > 4 ? 3 : 2;
       var rows = Math.ceil(c.subs.length / cols);
@@ -513,13 +519,25 @@
         var col = s % cols; var row = Math.floor(s / cols);
         var bx = x + (col - (cols - 1) / 2) * (3.2 / cols);
         var bz = z + (row - (rows - 1) / 2) * (2.6 / rows);
+        /* 글이 없으면 상자 없이 바닥 테두리만 둔다. 글 한 편마다 상자가 하나씩 위로 쌓인다. */
         var m = mat(0xffffff);
         var size = Math.min(.72, 3.2 / cols - .34);
-        var mesh = box(size, 1, size, m, bx, 0, bz);
-        mesh.userData = { cat: i, sub: s };
-        scene.add(mesh); pickable.push(mesh);
-        var label = addLabel(sub.name, 'sub', V(bx, 1, bz));
-        return { mesh: mesh, m: m, label: label, bx: bx, bz: bz, height: .3, shown: .3 };
+        var count = countOf(i, s);
+        var stack = new T.Group();
+        stack.position.set(bx, .3, bz);
+        scene.add(stack);
+        for (var k = 0; k < Math.min(count, STACK_MAX); k++) {
+          var slab = box(size, SLAB - .04, size, m, 0, k * SLAB + (SLAB - .04) / 2, 0);
+          slab.userData = { cat: i, sub: s };
+          stack.add(slab); pickable.push(slab);
+        }
+        if (!count) scene.add(edgeAt(size, .01, size, 0xc7d2dc, bx, .31, bz));
+        var pad = box(size, .5, size, new T.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }), bx, .55, bz);
+        pad.userData = { cat: i, sub: s };
+        scene.add(pad); pickable.push(pad);
+        var height = Math.min(count, STACK_MAX) * SLAB;
+        var label = addLabel(sub.name, 'sub', V(bx, .3 + height + .24, bz));
+        return { stack: stack, m: m, label: label, bx: bx, bz: bz, height: height, shown: 0 };
       });
       return { x: x, z: z, netMat: netMat, edge: edge, main: main, blocks: blocks };
     });
@@ -544,28 +562,28 @@
       pos.add(gap);
     }
     if (location.hash === '#debug-packet') window.vpcPacket = function () { return { p: packet.position.toArray(), s: packet.scale.x }; };
+    if (location.hash === '#debug-packet') window.vpcStacks = function () { return nets.reduce(function (all, n, i) { return all.concat(n.blocks.map(function (b, k) { return { cat: i, sub: k, posts: countOf(i, k), boxes: b.stack.children.length }; })); }, []); };
 
     function refresh() {
       var c = CATS[state.cat];
       var net = nets[state.cat];
       nets.forEach(function (n, i) {
         var on = i === state.cat;
-        n.netMat.color.set(on ? 0x5a82a6 : 0x3f6080);
+        n.netMat.color.set(on ? 0x6f97b8 : 0x4d7396);
         n.edge.material.color.set(on ? 0xf4b183 : 0xc7d2dc);
         n.main.el.classList.toggle('hot', on);
         n.main.show = !state.inside || on;
         n.blocks.forEach(function (b, s) {
           var picked = on && s === state.sub;
           b.m.color.set(picked ? 0xf4b183 : 0xffffff);
-          b.height = .3 + Math.min(countOf(i, s), 8) * .2;
           b.label.el.classList.toggle('subon', picked);
           b.label.show = on && state.inside;
           b.label.el.textContent = W < 560 ? String(s + 1) : CATS[i].subs[s].name;
         });
       });
       while (route.children.length) { var o = route.children[0]; o.geometry.dispose(); route.remove(o); }
-      var inner = net.z > 0 ? .4 : -.4;
-      var hub = [V(0, 1.4, 6.4), V(0, 1, 4.4), V(0, LINK_Y, 4.4), V(0, LINK_Y, 0), V(0, .2, 0), V(net.x, .2, 0), V(net.x, .2, inner)];
+      var inner = net.z > 0 ? ROW_Z - 1.55 : 1.55 - ROW_Z;
+      var hub = [V(0, 1.4, GW_Z + 2), V(0, 1, GW_Z), V(0, LINK_Y, GW_Z), V(0, LINK_Y, 0), V(0, .2, 0), V(net.x, .2, 0), V(net.x, .2, inner)];
       for (var n = 1; n < hub.length - 1; n++) route.add(beam(hub[n], hub[n + 1], .045, hotMat));
       var pickedBlock = state.sub === null ? null : net.blocks[state.sub];
       var endX = pickedBlock ? pickedBlock.bx : net.x;
@@ -580,7 +598,7 @@
       ballD = pathInfo ? closestArc(nextInfo, packet.position) : 0;
       pathInfo = nextInfo;
       var wall = net.z > 0 ? net.z - 1.67 : net.z + 1.67;
-      denyPath = (c.deny || []).length ? [V(0, LINK_Y, 4.4), V(0, LINK_Y, 0), V(0, .2, 0), V(net.x + .6, .2, 0), V(net.x + .6, .32, wall)] : null;
+      denyPath = (c.deny || []).length ? [V(0, LINK_Y, GW_Z), V(0, LINK_Y, 0), V(0, .2, 0), V(net.x + .6, .2, 0), V(net.x + .6, .32, wall)] : null;
       if (denyPath) {
         var nextDeny = measure(denyPath);
         denyD = denyInfo && denied.visible ? closestArc(nextDeny, denied.position) : 0;
@@ -593,7 +611,7 @@
       sgLabel.el.textContent = 'sg-' + c.slug + ' ALLOW ' + (c.allow || []).length + ' · DENY ' + (c.deny || []).length;
       sgLabel.show = state.inside;
       if (state.inside) aim({ target: V(net.x, .5, net.z + .35), dist: W < 560 ? 12 : 11.5, yaw: .28 - net.x * .03, pitch: .86 });
-      else aim({ target: V(0, 0, 1), dist: W < H ? 37 : 17, yaw: .42, pitch: .86 });
+      else aim({ target: V(0, 0, 1.1), dist: W < H ? 41 : 19, yaw: .42, pitch: .86 });
       user.goalYaw = 0; user.goalPitch = 0;
     }
     world = {
@@ -602,10 +620,9 @@
       update: function (dt, t) {
         nets.forEach(function (n) {
           n.blocks.forEach(function (b) {
-            b.shown += (b.height - b.shown) * stepOf(dt, 5);
-            b.mesh.scale.y = b.shown;
-            b.mesh.position.y = .3 + b.shown / 2;
-            b.label.pos.y = .3 + b.shown + .24;
+            b.shown += (1 - b.shown) * stepOf(dt, 3);
+            b.stack.scale.y = Math.max(.001, b.shown);
+            b.label.pos.y = .3 + b.height * b.shown + .24;
           });
         });
         if (pathInfo) {
