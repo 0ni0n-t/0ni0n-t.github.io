@@ -2,6 +2,7 @@
    0ni0n__T — 블로그 전체를 VPC 구성도로 표현한 디자인.
    틀은 새벽 여명 그라데이션 위에 그리고, 긴 글을 읽는 면은 흰색으로 둔다.
    하늘은 화면에 고정하고, 글자가 지나가지 않는 페이지 끝에만 피치색 지평선을 둔다.
+   스크롤하면 노을이 화면 아래에서부터 차오른다. --p 는 읽은 비율(0~1)이다.
    한 가지 화면으로 고정한 디자인이라 라이트/다크 전환을 두지 않는다.
    ------------------------------------------------------------ */
 
@@ -12,6 +13,8 @@
   --peach-light: #ffe9d9;
   --wire: #c4cff0;
   --dawn-stops: #0a1f5c 0%, #1a3a96 40%, #5a4aa8 72%, #8e55a2 100%;
+  --dusk-stops: #2a1248 0%, #6b1f6e 40%, #9a2a66 72%, #b23a33 100%;
+  --p: 0;
   --orange-ink: #a83505;
   --paper: #ffffff;
   --paper-ink: #14213d;
@@ -52,13 +55,14 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--orange); outlin
 body.on-white main a:focus-visible, .sheet a:focus-visible { outline-color: var(--orange-ink); }
 body:not(.on-white)::before { content: ""; position: fixed; inset: 0; z-index: -1; background: linear-gradient(180deg, var(--dawn-stops)); }
 body.on-white { background: var(--paper); }
+.sky-dusk { --edge: calc(var(--p) * 130% - 30%); position: fixed; inset: 0; z-index: -1; background: linear-gradient(180deg, var(--dusk-stops)); -webkit-mask-image: linear-gradient(to top, #000 var(--edge), transparent calc(var(--edge) + 30%)); mask-image: linear-gradient(to top, #000 var(--edge), transparent calc(var(--edge) + 30%)); pointer-events: none; }
 .skip-link { position: absolute; left: -999px; top: 0; padding: .4rem .8rem; background: var(--paper); color: var(--paper-ink); }
 .skip-link:focus { left: .5rem; top: .5rem; z-index: 30; }
 .shell { max-width: var(--shellw); margin: 0 auto; padding-left: max(1.25rem, env(safe-area-inset-left, 0px)); padding-right: max(1.25rem, env(safe-area-inset-right, 0px)); }
 
 /* ---------- masthead ---------- */
 .masthead { background: linear-gradient(180deg, #0a1f5c 0%, #1a3a96 40%, #5a4aa8 70%, #8e55a2 calc(100% - 2.5rem), var(--orange) 100%); color: #ffffff; }
-.site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--cobalt-deep); }
+.site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--cobalt-deep); background: color-mix(in srgb, #2a1248 calc(var(--p) * 100%), #0a1f5c); }
 .header-inner { display: flex; align-items: center; gap: .5rem; height: var(--header-h); }
 .icon-btn { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 2.75rem; height: 2.75rem; margin-left: -.6rem; padding: 0; background: none; border: 0; color: #ffffff; cursor: pointer; }
 .icon-btn svg { width: 1.35rem; height: 1.35rem; }
@@ -221,6 +225,6 @@ html[data-sidebar="closed"] .sidebar { display: none; }
   .flow th:nth-child(2), .flow td:nth-child(2), .flow th:nth-child(3), .flow td:nth-child(3) { display: none; }
 }
 @media print {
-  .site-header, .horizon, .post-nav, .sidebar, .sidebar-backdrop, body::before { display: none; }
+  .site-header, .horizon, .sky-dusk, .post-nav, .sidebar, .sidebar-backdrop, body::before { display: none; }
   .layout { display: block; }
 }
