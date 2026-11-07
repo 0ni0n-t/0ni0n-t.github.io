@@ -27,7 +27,9 @@
     </main>
   </div>
   <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
-  {% include footer.html %}
+  {%- unless page.layout == 'post' %}
+  <div class="horizon" aria-hidden="true"></div>
+  {%- endunless %}
   <script>
     // 사이드바 접기/펴기. 데스크톱에서 고른 상태만 기억하고, 좁은 화면은 항상 접힌 채로 시작한다.
     (function () {
