@@ -5,9 +5,6 @@
 </head>
 <body{% if page.layout == 'post' %} class="on-white"{% endif %}>
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
-  {%- unless page.layout == 'post' %}
-  <div class="sky-dusk" aria-hidden="true"></div>
-  {%- endunless %}
   {% include header.html %}
   {%- if page.layout == 'post' %}
   {%- assign cat = page.categories | first %}
@@ -30,9 +27,6 @@
     </main>
   </div>
   <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
-  {%- unless page.layout == 'post' %}
-  <div class="horizon" aria-hidden="true"></div>
-  {%- endunless %}
   <script>
     // 사이드바 접기/펴기. 데스크톱에서 고른 상태만 기억하고, 좁은 화면은 항상 접힌 채로 시작한다.
     (function () {
@@ -55,24 +49,6 @@
         if (e.key === 'Escape' && narrow.matches && root.getAttribute('data-sidebar') === 'open') { set('closed', false); btn.focus(); }
       });
       narrow.addEventListener('change', function () { set(narrow.matches ? 'closed' : (saved() || 'open'), false); });
-    })();
-  </script>
-  <script>
-    // 스크롤한 비율만큼 노을을 올린다. 스크립트가 없거나 움직임 줄이기를 켜면 여명으로 둔다.
-    (function () {
-      if (!document.querySelector('.sky-dusk') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
-      var root = document.documentElement;
-      var queued = false;
-      function update() {
-        queued = false;
-        var range = root.scrollHeight - window.innerHeight;
-        var p = range > 0 ? Math.min(1, Math.max(0, window.scrollY / range)) : 0;
-        root.style.setProperty('--p', p.toFixed(3));
-      }
-      function request() { if (!queued) { queued = true; window.requestAnimationFrame(update); } }
-      window.addEventListener('scroll', request, { passive: true });
-      window.addEventListener('resize', request);
-      update();
     })();
   </script>
 </body>

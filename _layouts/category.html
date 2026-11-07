@@ -11,6 +11,12 @@ layout: default
     {{ content }}
   </div>
   <div class="sheet">
+    <h2 class="sg-title">세부 카테고리</h2>
+    <dl class="rules sub-rules">
+      {%- for sub in subnet.subs %}
+      <div><dt>{{ sub.name }}</dt><dd>{{ sub.text }}</dd></div>
+      {%- endfor %}
+    </dl>
     {% include sg.html subnet=subnet %}
   </div>
   <h2 class="band-title">Flow Logs: 이 서브넷의 글</h2>

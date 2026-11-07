@@ -26,8 +26,8 @@ category_names:
   dev: "개발"
   ctf-wargame: "CTF / Wargame"
   bug-bounty: "Bug Bounty"
-  tech-docs: "블로그 / 기술문서"
   papers-conferences: "논문 / 컨퍼런스"
+  tech-docs: "블로그 / 기술문서"
   contests-certs: "공모전 / 자격증"
 
 defaults:
