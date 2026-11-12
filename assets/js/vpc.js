@@ -18,6 +18,48 @@
   var state = { cat: 2, sub: null, inside: false, panel: phone.matches ? 'full' : 'closed', view: phone.matches ? 'feed' : 'cat', post: null };
   var world = null;
 
+  /* ---------- 주소 맞추기 ----------
+     창 안에서 연 글·카테고리·About 의 고유 주소를 주소창에 보여 준다. 공유·새로고침하면 그 페이지가 열리고,
+     뒤로가기·앞으로가기는 이 화면 안에서 한 단계씩 움직인다. */
+  var HOME_URL = location.pathname;
+  var HOME_TITLE = document.title;
+  var restoring = false;
+  function urlOf() {
+    if (state.panel === 'closed') return { url: HOME_URL, title: HOME_TITLE };
+    if (state.post) return { url: state.post.url, title: state.post.title + ' | ' + HOME_TITLE };
+    if (state.view === 'about') return { url: aboutLink.getAttribute('href'), title: 'About | ' + HOME_TITLE };
+    if (state.view === 'cat') return { url: catLinks[state.cat].getAttribute('href'), title: CATS[state.cat].name + ' | ' + HOME_TITLE };
+    return { url: HOME_URL, title: HOME_TITLE };
+  }
+  function snapshot() {
+    return { vpc: 1, cat: state.cat, sub: state.sub, inside: state.inside, panel: state.panel, view: state.view, post: state.post ? state.post.url : null };
+  }
+  function syncUrl() {
+    if (!window.history || !history.pushState) return;
+    var u = urlOf();
+    document.title = u.title;
+    if (restoring) return;
+    if (location.pathname === u.url) history.replaceState(snapshot(), '', u.url);
+    else history.pushState(snapshot(), '', u.url);
+  }
+  addEventListener('popstate', function (e) {
+    var s = e.state;
+    if (!s || !s.vpc) {
+      /* 이 화면이 만든 기록이 아니면 그 주소의 페이지를 그대로 연다 */
+      if (location.pathname !== HOME_URL) location.reload();
+      return;
+    }
+    restoring = true;
+    state.cat = s.cat; state.sub = s.sub; state.inside = s.inside; state.panel = s.panel; state.view = s.view;
+    state.post = s.post ? POSTS.filter(function (p) { return p.url === s.post; })[0] || null : null;
+    applyMode();
+    sheet.scrollTop = 0;
+    renderSheet();
+    restoring = false;
+    if (state.panel === 'closed' && phone.matches) ensure3D();
+    if (world) world.refresh();
+  });
+
   function el(tag, cls, text) {
     var e = document.createElement(tag);
     if (cls) e.className = cls;
@@ -185,7 +227,11 @@
   function openPost(post) {
     var c = CATS.findIndex(function (x) { return x.slug === post.cat; });
     var s = CATS[c].subs.findIndex(function (x) { return x.name === post.sub; });
+    /* 카테고리를 거쳐 글을 여는 중간 단계는 방문 기록에 남기지 않는다 */
+    var was = restoring;
+    restoring = true;
     pick(c, s < 0 ? null : s, true);
+    restoring = was;
     state.post = post;
     sheet.scrollTop = 0;
     renderSheet();
@@ -282,6 +328,7 @@
   function renderSheet() {
     var top = sheet.scrollTop;
     document.body.dataset.reading = state.post || state.view === 'about' ? 'yes' : 'no';
+    syncUrl();
     sheet.replaceChildren();
     if (state.panel === 'closed') return;
     sheet.append(sheetTools());
