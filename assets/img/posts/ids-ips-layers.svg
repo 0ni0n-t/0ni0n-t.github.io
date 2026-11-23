@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" role="img" aria-labelledby="t d">
+  <title id="t">방화벽과 IDS/IPS가 보는 범위</title>
+  <desc id="d">패킷 하나를 머리(IP·포트)와 내용(페이로드)으로 나누어, 방화벽은 머리만 보고 IDS/IPS는 내용과 흐름까지 본다는 것을 비교한 그림.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1b2733"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f6b4f"/></marker>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a63d2f"/></marker>
+    <marker id="o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94481c"/></marker>
+  </defs>
+  <style>
+    text { font-family: "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; fill: #1b2733; }
+    .h { font-size: 17px; font-weight: 800; }
+    .b { font-size: 14px; font-weight: 700; }
+    .s { font-size: 12.5px; }
+    .x { font-size: 11.5px; fill: #4a5866; }
+    .m { font-family: "Nanum Gothic Coding", Consolas, Menlo, monospace; font-size: 12px; }
+    .g { fill: #2f6b4f; font-weight: 700; }
+    .r { fill: #a63d2f; font-weight: 700; }
+    .o { fill: #94481c; font-weight: 700; }
+    .w { fill: #ffffff; }
+  </style>
+  <rect width="960" height="400" fill="#ffffff"/>
+  <text x="30" y="40" class="h">패킷 하나를 누가 어디까지 보나</text>
+  <!-- packet -->
+  <rect x="30" y="70" width="300" height="70" rx="4" fill="#1e3650"/>
+  <text x="180" y="100" class="b w" text-anchor="middle">머리 (헤더)</text>
+  <text x="180" y="122" class="m w" text-anchor="middle">출발 IP · 도착 IP · 포트 · 프로토콜</text>
+  <rect x="330" y="70" width="600" height="70" rx="4" fill="#f4b183"/>
+  <text x="630" y="100" class="b" text-anchor="middle">내용 (페이로드)</text>
+  <text x="630" y="122" class="m" text-anchor="middle">GET /login?id=admin' OR 1=1--   ·   TLS SNI: example.com</text>
+  <!-- firewall bracket -->
+  <rect x="30" y="170" width="300" height="80" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/>
+  <text x="50" y="198" class="b">방화벽 (AWS: 보안 그룹 · NACL)</text>
+  <text x="50" y="222" class="s">"이 IP에서 443 포트로 오는 건 허용"</text>
+  <text x="50" y="240" class="x">머리만 보고 들여보낼지 정합니다</text>
+  <line x1="180" y1="168" x2="180" y2="142" stroke="#1e3650" stroke-width="2" marker-end="url(#a)"/>
+  <!-- ids bracket -->
+  <rect x="30" y="280" width="900" height="90" rx="6" fill="#fdf3ec" stroke="#94481c" stroke-width="2"/>
+  <text x="50" y="308" class="b">패킷을 직접 검사하는 IDS / IPS (AWS: Network Firewall 상태 저장 규칙)</text>
+  <text x="50" y="332" class="s">"443 포트는 맞지만, 내용에 example.com 접속이 들어 있다 → 경보(IDS) 또는 차단(IPS)"</text>
+  <text x="50" y="352" class="x">머리와 내용, 흐름까지 봅니다. AWS WAF는 웹 요청(HTTP(S)) 단위로, GuardDuty는 로그와 이벤트로 판단합니다</text>
+  <line x1="630" y1="278" x2="630" y2="142" stroke="#94481c" stroke-width="2" marker-end="url(#o)"/>
+  <line x1="180" y1="278" x2="180" y2="252" stroke="#94481c" stroke-width="2" stroke-dasharray="5 4"/>
+</svg>

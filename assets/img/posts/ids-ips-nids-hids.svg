@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-labelledby="t d">
+  <title id="t">네트워크형과 호스트형 비교</title>
+  <desc id="d">네트워크형(NIDS)은 네트워크 길목에서 여러 서버의 트래픽을 보고, 호스트형(HIDS)은 서버마다 에이전트를 두고 프로세스·파일·시스템 콜을 본다. AWS 대응 서비스를 함께 표시.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1b2733"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f6b4f"/></marker>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a63d2f"/></marker>
+    <marker id="o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94481c"/></marker>
+  </defs>
+  <style>
+    text { font-family: "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; fill: #1b2733; }
+    .h { font-size: 17px; font-weight: 800; }
+    .b { font-size: 14px; font-weight: 700; }
+    .s { font-size: 12.5px; }
+    .x { font-size: 11.5px; fill: #4a5866; }
+    .m { font-family: "Nanum Gothic Coding", Consolas, Menlo, monospace; font-size: 12px; }
+    .g { fill: #2f6b4f; font-weight: 700; }
+    .r { fill: #a63d2f; font-weight: 700; }
+    .o { fill: #94481c; font-weight: 700; }
+    .w { fill: #ffffff; }
+  </style>
+  <rect width="960" height="420" fill="#ffffff"/>
+  <!-- NIDS -->
+  <rect x="20" y="20" width="450" height="380" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/>
+  <text x="40" y="50" class="h">네트워크형 (NIDS / NIPS)</text>
+  <rect x="160" y="75" width="170" height="40" rx="4" fill="#ffffff" stroke="#c7d2dc"/>
+  <text x="245" y="100" class="b" text-anchor="middle">인터넷</text>
+  <line x1="245" y1="117" x2="245" y2="150" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <rect x="130" y="152" width="230" height="46" rx="4" fill="#f4b183" stroke="#94481c" stroke-width="2"/>
+  <text x="245" y="180" class="b" text-anchor="middle">길목 센서 (서브넷 경계)</text>
+  <line x1="245" y1="200" x2="110" y2="240" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="245" y1="200" x2="245" y2="240" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="245" y1="200" x2="380" y2="240" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <rect x="50" y="242" width="120" height="40" rx="4" fill="#ffffff" stroke="#c7d2dc"/><text x="110" y="267" class="s" text-anchor="middle">서버 A</text>
+  <rect x="185" y="242" width="120" height="40" rx="4" fill="#ffffff" stroke="#c7d2dc"/><text x="245" y="267" class="s" text-anchor="middle">서버 B</text>
+  <rect x="320" y="242" width="120" height="40" rx="4" fill="#ffffff" stroke="#c7d2dc"/><text x="380" y="267" class="s" text-anchor="middle">서버 C</text>
+  <text x="40" y="312" class="s">센서 하나로 여러 서버를 봅니다. 서버 안은 모릅니다.</text>
+  <text x="40" y="340" class="b o">AWS</text>
+  <text x="80" y="340" class="s">Network Firewall, Traffic Mirroring + Suricata,</text>
+  <text x="80" y="360" class="s">VPC Flow Logs 기반 GuardDuty 탐지</text>
+  <!-- HIDS -->
+  <rect x="490" y="20" width="450" height="380" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/>
+  <text x="510" y="50" class="h">호스트형 (HIDS / HIPS)</text>
+  <g>
+    <rect x="515" y="80" width="125" height="190" rx="4" fill="#ffffff" stroke="#c7d2dc"/>
+    <text x="577" y="105" class="b" text-anchor="middle">서버 A</text>
+    <rect x="527" y="120" width="101" height="34" rx="3" fill="#f4b183" stroke="#94481c"/><text x="577" y="142" class="s" text-anchor="middle">에이전트</text>
+    <text x="577" y="180" class="x" text-anchor="middle">프로세스 실행</text>
+    <text x="577" y="200" class="x" text-anchor="middle">파일 변경</text>
+    <text x="577" y="220" class="x" text-anchor="middle">시스템 콜</text>
+    <text x="577" y="240" class="x" text-anchor="middle">로그인 기록</text>
+  </g>
+  <g>
+    <rect x="652" y="80" width="125" height="190" rx="4" fill="#ffffff" stroke="#c7d2dc"/>
+    <text x="714" y="105" class="b" text-anchor="middle">서버 B</text>
+    <rect x="664" y="120" width="101" height="34" rx="3" fill="#f4b183" stroke="#94481c"/><text x="714" y="142" class="s" text-anchor="middle">에이전트</text>
+  </g>
+  <g>
+    <rect x="789" y="80" width="125" height="190" rx="4" fill="#ffffff" stroke="#c7d2dc"/>
+    <text x="851" y="105" class="b" text-anchor="middle">서버 C</text>
+    <rect x="801" y="120" width="101" height="34" rx="3" fill="#f4b183" stroke="#94481c"/><text x="851" y="142" class="s" text-anchor="middle">에이전트</text>
+  </g>
+  <text x="510" y="312" class="s">서버마다 설치합니다. 서버 안의 행위를 봅니다.</text>
+  <text x="510" y="340" class="b o">AWS</text>
+  <text x="550" y="340" class="s">GuardDuty Runtime Monitoring</text>
+  <text x="550" y="360" class="s">(보안 에이전트: EKS · ECS · EC2)</text>
+</svg>

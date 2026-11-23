@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" role="img" aria-labelledby="t d">
+  <title id="t">실습 구성도</title>
+  <desc id="d">기본 VPC 안에 작업·방화벽·공인 서브넷 3개를 두고, EC2의 나가는 트래픽이 Network Firewall 엔드포인트, NAT 게이트웨이, 인터넷 게이트웨이를 차례로 지나게 한 구성. 돌아오는 트래픽도 방화벽을 지나며, 경보·흐름 로그는 CloudWatch Logs로 간다. 번호 1~6은 본문 순서.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1b2733"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f6b4f"/></marker>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a63d2f"/></marker>
+    <marker id="o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94481c"/></marker>
+  </defs>
+  <style>
+    text { font-family: "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; fill: #1b2733; }
+    .h { font-size: 17px; font-weight: 800; }
+    .b { font-size: 14px; font-weight: 700; }
+    .s { font-size: 12.5px; }
+    .x { font-size: 11.5px; fill: #4a5866; }
+    .m { font-family: "Nanum Gothic Coding", Consolas, Menlo, monospace; font-size: 12px; }
+    .g { fill: #2f6b4f; font-weight: 700; }
+    .r { fill: #a63d2f; font-weight: 700; }
+    .o { fill: #94481c; font-weight: 700; }
+    .w { fill: #ffffff; }
+  </style>
+  <rect width="960" height="560" fill="#ffffff"/>
+  <!-- internet -->
+  <rect x="360" y="14" width="240" height="40" rx="4" fill="#ffffff" stroke="#c7d2dc"/>
+  <text x="480" y="39" class="b" text-anchor="middle">인터넷 (example.com, neverssl.com)</text>
+  <!-- VPC -->
+  <rect x="20" y="70" width="700" height="470" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/>
+  <text x="40" y="98" class="h">기본 VPC 172.31.0.0/16 · ap-northeast-2a</text>
+  <rect x="380" y="76" width="200" height="34" rx="4" fill="#1e3650"/>
+  <text x="480" y="98" class="b w" text-anchor="middle">인터넷 게이트웨이</text>
+  <line x1="480" y1="74" x2="480" y2="58" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <!-- pub subnet -->
+  <rect x="40" y="125" width="660" height="105" rx="6" fill="#ffffff" stroke="#c7d2dc" stroke-width="1.5"/>
+  <text x="56" y="148" class="b">공인 서브넷 172.31.66.0/24</text>
+  <rect x="380" y="160" width="200" height="50" rx="4" fill="#ffffff" stroke="#1e3650" stroke-width="2"/>
+  <text x="480" y="190" class="b" text-anchor="middle">NAT 게이트웨이</text>
+  <text x="56" y="175" class="m">rt-pub</text>
+  <text x="56" y="194" class="m">0.0.0.0/0 → igw</text>
+  <text x="56" y="213" class="m" style="fill:#94481c">172.31.64.0/24 → vpce ⑤</text>
+  <line x1="480" y1="158" x2="480" y2="112" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <text x="490" y="140" class="b">④</text>
+  <!-- fw subnet -->
+  <rect x="40" y="250" width="660" height="125" rx="6" fill="#ffffff" stroke="#c7d2dc" stroke-width="1.5"/>
+  <text x="56" y="273" class="b">방화벽 서브넷 172.31.65.0/24</text>
+  <rect x="340" y="282" width="280" height="80" rx="4" fill="#f4b183" stroke="#94481c" stroke-width="2"/>
+  <text x="480" y="305" class="b" text-anchor="middle">Network Firewall 엔드포인트 ②</text>
+  <text x="480" y="327" class="m r" text-anchor="middle">drop: SNI가 example.com으로 끝남</text>
+  <text x="480" y="347" class="m g" text-anchor="middle">alert: HTTP URI에 /ids-ips-test 포함</text>
+  <text x="56" y="300" class="m">rt-fw</text>
+  <text x="56" y="319" class="m">0.0.0.0/0 → nat</text>
+  <line x1="480" y1="280" x2="480" y2="214" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <text x="490" y="250" class="b">③</text>
+  <path d="M600,212 C640,240 640,260 610,280" fill="none" stroke="#94481c" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#o)"/>
+  <text x="640" y="250" class="x o">응답도 방화벽으로</text>
+  <!-- work subnet -->
+  <rect x="40" y="395" width="660" height="125" rx="6" fill="#ffffff" stroke="#c7d2dc" stroke-width="1.5"/>
+  <text x="56" y="418" class="b">작업 서브넷 172.31.64.0/24 (공인 IP 없음)</text>
+  <rect x="380" y="430" width="200" height="70" rx="4" fill="#ffffff" stroke="#1e3650" stroke-width="2"/>
+  <text x="480" y="458" class="b" text-anchor="middle">EC2 t3.micro ①</text>
+  <text x="480" y="480" class="m" text-anchor="middle">curl (SSM으로 접속)</text>
+  <text x="56" y="445" class="m">rt-work</text>
+  <text x="56" y="464" class="m">0.0.0.0/0 → vpce</text>
+  <line x1="480" y1="428" x2="480" y2="366" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <!-- right side -->
+  <rect x="740" y="250" width="200" height="110" rx="6" fill="#ffffff" stroke="#2f6b4f" stroke-width="2"/>
+  <text x="840" y="278" class="b" text-anchor="middle">CloudWatch Logs ⑥</text>
+  <text x="840" y="302" class="m" text-anchor="middle">/ids-ips-lab/nfw</text>
+  <text x="840" y="326" class="x" text-anchor="middle">alert 로그 (blocked/allowed)</text>
+  <text x="840" y="344" class="x" text-anchor="middle">flow 로그</text>
+  <line x1="622" y1="322" x2="736" y2="310" stroke="#2f6b4f" stroke-width="2" marker-end="url(#g)"/>
+  <rect x="740" y="400" width="200" height="120" rx="6" fill="#ffffff" stroke="#1e3650" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="840" y="428" class="b" text-anchor="middle">GuardDuty (실습 A)</text>
+  <text x="840" y="452" class="x" text-anchor="middle">CloudTrail·흐름·DNS 로그 분석</text>
+  <text x="840" y="472" class="x" text-anchor="middle">경로 밖 → 경보만 (IDS)</text>
+  <text x="840" y="496" class="x" text-anchor="middle">샘플 탐지 3건 생성</text>
+</svg>

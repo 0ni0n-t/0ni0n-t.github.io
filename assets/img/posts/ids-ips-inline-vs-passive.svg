@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" role="img" aria-labelledby="t d">
+  <title id="t">IDS와 IPS의 위치 차이</title>
+  <desc id="d">위쪽 IDS는 통신 경로 밖에서 복사본을 받아 경보만 보내고 원래 패킷은 서버에 도착한다. 아래쪽 IPS는 경로 한가운데에 있어 나쁜 패킷을 버린다.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1b2733"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f6b4f"/></marker>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a63d2f"/></marker>
+    <marker id="o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94481c"/></marker>
+  </defs>
+  <style>
+    text { font-family: "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; fill: #1b2733; }
+    .h { font-size: 17px; font-weight: 800; }
+    .b { font-size: 14px; font-weight: 700; }
+    .s { font-size: 12.5px; }
+    .x { font-size: 11.5px; fill: #4a5866; }
+    .m { font-family: "Nanum Gothic Coding", Consolas, Menlo, monospace; font-size: 12px; }
+    .g { fill: #2f6b4f; font-weight: 700; }
+    .r { fill: #a63d2f; font-weight: 700; }
+    .o { fill: #94481c; font-weight: 700; }
+    .w { fill: #ffffff; }
+  </style>
+  <rect width="960" height="440" fill="#ffffff"/>
+  <!-- IDS -->
+  <text x="30" y="38" class="h">IDS — 경로 밖 (out-of-band)</text>
+  <rect x="30" y="60" width="140" height="50" rx="4" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/><text x="100" y="91" class="b" text-anchor="middle">클라이언트</text>
+  <rect x="790" y="60" width="140" height="50" rx="4" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/><text x="860" y="91" class="b" text-anchor="middle">서버</text>
+  <line x1="172" y1="85" x2="786" y2="85" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <text x="480" y="77" class="x" text-anchor="middle">원래 패킷은 그대로 도착 (악성이어도)</text>
+  <circle cx="400" cy="85" r="5" fill="#94481c"/>
+  <line x1="400" y1="90" x2="400" y2="140" stroke="#94481c" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#o)"/>
+  <text x="410" y="122" class="x">복사본 (미러링)</text>
+  <rect x="320" y="142" width="160" height="46" rx="4" fill="#f4b183" stroke="#94481c" stroke-width="2"/><text x="400" y="170" class="b" text-anchor="middle">IDS</text>
+  <line x1="482" y1="165" x2="600" y2="165" stroke="#2f6b4f" stroke-width="2" marker-end="url(#g)"/>
+  <text x="610" y="170" class="b g">경보 → 사람/자동화가 대응</text>
+  <text x="30" y="210" class="x">AWS: GuardDuty, Traffic Mirroring + Suricata(alert). 경로 안의 Network Firewall도 alert 규칙으로 경보만 남길 수 있음</text>
+  <line x1="20" y1="228" x2="940" y2="228" stroke="#c7d2dc" stroke-dasharray="6 5"/>
+  <!-- IPS -->
+  <text x="30" y="262" class="h">IPS — 경로 안 (inline)</text>
+  <rect x="30" y="290" width="140" height="50" rx="4" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/><text x="100" y="321" class="b" text-anchor="middle">클라이언트</text>
+  <rect x="380" y="285" width="200" height="60" rx="4" fill="#f4b183" stroke="#94481c" stroke-width="2"/><text x="480" y="320" class="b" text-anchor="middle">IPS</text>
+  <rect x="790" y="290" width="140" height="50" rx="4" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/><text x="860" y="321" class="b" text-anchor="middle">서버</text>
+  <line x1="172" y1="315" x2="376" y2="315" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="582" y1="305" x2="786" y2="305" stroke="#2f6b4f" stroke-width="2" marker-end="url(#g)"/>
+  <text x="684" y="297" class="x g" text-anchor="middle">정상 → 통과</text>
+  <line x1="582" y1="330" x2="660" y2="370" stroke="#a63d2f" stroke-width="2" marker-end="url(#r)"/>
+  <text x="668" y="382" class="b r">악성 → drop (서버에 도착 안 함)</text>
+  <text x="30" y="420" class="x">AWS: Network Firewall drop 규칙(라우팅으로 경로에 넣음), AWS WAF block(ALB·CloudFront 앞)</text>
+</svg>

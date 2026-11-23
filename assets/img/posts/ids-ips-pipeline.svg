@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" role="img" aria-labelledby="t d">
+  <title id="t">IDS/IPS 동작 4단계</title>
+  <desc id="d">수집, 분석, 판정, 대응 네 단계. 대응 단계에서 IDS는 경보만 보내고 IPS는 패킷을 버린다.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1b2733"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f6b4f"/></marker>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a63d2f"/></marker>
+    <marker id="o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94481c"/></marker>
+  </defs>
+  <style>
+    text { font-family: "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; fill: #1b2733; }
+    .h { font-size: 17px; font-weight: 800; }
+    .b { font-size: 14px; font-weight: 700; }
+    .s { font-size: 12.5px; }
+    .x { font-size: 11.5px; fill: #4a5866; }
+    .m { font-family: "Nanum Gothic Coding", Consolas, Menlo, monospace; font-size: 12px; }
+    .g { fill: #2f6b4f; font-weight: 700; }
+    .r { fill: #a63d2f; font-weight: 700; }
+    .o { fill: #94481c; font-weight: 700; }
+    .w { fill: #ffffff; }
+  </style>
+  <rect width="960" height="300" fill="#ffffff"/>
+  <text x="30" y="38" class="h">IDS/IPS가 패킷 하나를 처리하는 순서</text>
+  <g>
+    <rect x="30" y="70" width="190" height="120" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/>
+    <text x="50" y="98" class="b">① 수집</text>
+    <text x="50" y="124" class="s">패킷 캡처, 로그 읽기</text>
+    <text x="50" y="146" class="x">예: 미러링된 복사본,</text>
+    <text x="50" y="164" class="x">VPC Flow Logs, DNS 로그</text>
+  </g>
+  <line x1="222" y1="130" x2="262" y2="130" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <g>
+    <rect x="265" y="70" width="190" height="120" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/>
+    <text x="285" y="98" class="b">② 분석</text>
+    <text x="285" y="124" class="s">패킷: 흐름 재조립·필드 추출</text>
+    <text x="285" y="146" class="x">TCP 세션을 묶고 URI·SNI 꺼냄</text>
+    <text x="285" y="164" class="x">로그: 기록된 필드를 정리</text>
+  </g>
+  <line x1="457" y1="130" x2="497" y2="130" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <g>
+    <rect x="500" y="70" width="190" height="120" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/>
+    <text x="520" y="98" class="b">③ 판정</text>
+    <text x="520" y="124" class="s">규칙 일치 / 이상 점수</text>
+    <text x="520" y="146" class="x">시그니처와 비교하거나</text>
+    <text x="520" y="164" class="x">평소 행동과 비교합니다</text>
+  </g>
+  <line x1="692" y1="110" x2="735" y2="88" stroke="#2f6b4f" stroke-width="2" marker-end="url(#g)"/>
+  <line x1="692" y1="150" x2="735" y2="182" stroke="#a63d2f" stroke-width="2" marker-end="url(#r)"/>
+  <rect x="738" y="56" width="192" height="64" rx="6" fill="#ffffff" stroke="#2f6b4f" stroke-width="2"/>
+  <text x="755" y="82" class="b g">④ IDS: 경보</text>
+  <text x="755" y="104" class="x">통신은 그대로, 기록·알림만</text>
+  <rect x="738" y="150" width="192" height="64" rx="6" fill="#ffffff" stroke="#a63d2f" stroke-width="2"/>
+  <text x="755" y="176" class="b r">④ IPS: 차단</text>
+  <text x="755" y="198" class="x">패킷을 버리고 기록도 남김</text>
+  <text x="30" y="250" class="s">주요 차이는 ④ 대응 단계입니다. 직접 차단하려면 트래픽이나 그 동작을 제어할 수 있는 위치에 있어야 합니다.</text>
+</svg>
