@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" role="img" aria-labelledby="t d">
+  <title id="t">커버리지 피드백 루프</title>
+  <desc id="d">입력을 변형해 실행하고, 새 코드 경로를 연 입력을 주로 입력 저장소에 남겨 다음 변형의 재료로 쓰는 되먹임 그림</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1b2733"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f6b4f"/></marker>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a63d2f"/></marker>
+    <marker id="o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94481c"/></marker>
+  </defs>
+  <style>
+    text { font-family: "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; fill: #1b2733; }
+    .h { font-size: 17px; font-weight: 800; }
+    .b { font-size: 14px; font-weight: 700; }
+    .s { font-size: 12.5px; }
+    .x { font-size: 11.5px; fill: #4a5866; }
+    .m { font-family: "Nanum Gothic Coding", Consolas, Menlo, monospace; font-size: 12px; }
+    .g { fill: #2f6b4f; font-weight: 700; }
+    .r { fill: #a63d2f; font-weight: 700; }
+    .o { fill: #94481c; font-weight: 700; }
+    .w { fill: #ffffff; }
+  </style>
+  <rect width="960" height="380" fill="#ffffff"/>
+  <text x="30" y="38" class="h">coverage-guided: 새 길을 연 입력을 주로 남겨서 다음 재료로 씁니다</text>
+  <rect x="30" y="80" width="190" height="130" rx="6" fill="#fbefe6" stroke="#94481c" stroke-width="2"/>
+  <text x="46" y="108" class="b">입력 저장소(corpus)</text>
+  <text x="46" y="132" class="s">처음엔 씨앗 몇 개</text>
+  <text x="46" y="152" class="x">새 길을 연 입력이</text>
+  <text x="46" y="172" class="x">계속 쌓임</text>
+  <rect x="285" y="80" width="190" height="130" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/>
+  <text x="301" y="108" class="b">변형</text>
+  <text x="301" y="132" class="s">저장소에서 하나 고름</text>
+  <text x="301" y="152" class="x">바이트 뒤집기, 삽입,</text>
+  <text x="301" y="172" class="x">삭제, 조각 이어 붙이기</text>
+  <rect x="540" y="80" width="190" height="130" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/>
+  <text x="556" y="108" class="b">계측된 대상 실행</text>
+  <text x="556" y="132" class="s">지나간 코드 구간을</text>
+  <text x="556" y="152" class="x">기록(커버리지 지도)</text>
+  <text x="556" y="172" class="x">크래시면 따로 저장</text>
+  <rect x="770" y="80" width="170" height="130" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/>
+  <text x="786" y="108" class="b">새 길인가?</text>
+  <text x="786" y="132" class="s">지도를 기존과 비교</text>
+  <text x="786" y="152" class="x">처음 보는 구간이</text>
+  <text x="786" y="172" class="x">있으면 예</text>
+  <line x1="222" y1="145" x2="283" y2="145" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="477" y1="145" x2="538" y2="145" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="732" y1="145" x2="768" y2="145" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M855,212 L855,262 L125,262 L125,214" fill="none" stroke="#2f6b4f" stroke-width="2" marker-end="url(#g)"/>
+  <text x="490" y="254" class="g" text-anchor="middle">예: 그 입력을 저장소에 추가</text>
+  <path d="M870,212 L870,320 L380,320 L380,214" fill="none" stroke="#a63d2f" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#r)"/>
+  <text x="625" y="340" class="r" text-anchor="middle">아니오: 대개 버리고 다른 변형 시도</text>
+  <text x="30" y="310" class="x">예) 첫 글자가 F일 때만 열리는 길이 있다면, F로 시작하는 입력이</text>
+  <text x="30" y="330" class="x">새 길로 인정되어 남을 수 있고, 그 입력을 변형하다가 더 깊은 길(FU, FUZ...)을 찾습니다.</text>
+</svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 330" role="img" aria-labelledby="t d">
+  <title id="t">퍼징의 기본 반복</title>
+  <desc id="d">입력을 만들고, 대상 프로그램에 넣어 실행하고, 비정상 종료를 감시해, 크래시가 나면 입력을 저장하는 반복 그림</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1b2733"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f6b4f"/></marker>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a63d2f"/></marker>
+    <marker id="o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94481c"/></marker>
+  </defs>
+  <style>
+    text { font-family: "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; fill: #1b2733; }
+    .h { font-size: 17px; font-weight: 800; }
+    .b { font-size: 14px; font-weight: 700; }
+    .s { font-size: 12.5px; }
+    .x { font-size: 11.5px; fill: #4a5866; }
+    .m { font-family: "Nanum Gothic Coding", Consolas, Menlo, monospace; font-size: 12px; }
+    .g { fill: #2f6b4f; font-weight: 700; }
+    .r { fill: #a63d2f; font-weight: 700; }
+    .o { fill: #94481c; font-weight: 700; }
+    .w { fill: #ffffff; }
+  </style>
+  <rect width="960" height="330" fill="#ffffff"/>
+  <text x="30" y="38" class="h">퍼저가 하는 일: 입력을 만들어 넣고, 죽는지 지켜보는 일을 계속 반복합니다</text>
+  <rect x="30" y="80" width="195" height="120" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/>
+  <text x="46" y="108" class="b">① 입력 만들기</text>
+  <text x="46" y="132" class="s">씨앗(seed)을 조금씩 바꿈</text>
+  <text x="46" y="152" class="x">예: 글자 하나 뒤집기,</text>
+  <text x="46" y="172" class="x">일부 지우기, 늘리기</text>
+  <rect x="265" y="80" width="195" height="120" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/>
+  <text x="281" y="108" class="b">② 실행</text>
+  <text x="281" y="132" class="s">대상 프로그램에 넣음</text>
+  <text x="281" y="152" class="x">한 번에 수천 번 이상</text>
+  <text x="281" y="172" class="x">자동으로 반복</text>
+  <rect x="500" y="80" width="195" height="120" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/>
+  <text x="516" y="108" class="b">③ 감시</text>
+  <text x="516" y="132" class="s">정상 종료? 비정상 종료?</text>
+  <text x="516" y="152" class="x">시그널(SIGSEGV, SIGABRT)</text>
+  <text x="516" y="172" class="x">또는 sanitizer 경고</text>
+  <rect x="735" y="80" width="195" height="120" rx="6" fill="#fbefe6" stroke="#94481c" stroke-width="2"/>
+  <text x="751" y="108" class="b">④ 저장</text>
+  <text x="751" y="132" class="s">죽은 입력을 파일로 저장</text>
+  <text x="751" y="152" class="x">나중에 같은 입력으로</text>
+  <text x="751" y="172" class="x">다시 재현해 원인 분석</text>
+  <line x1="227" y1="140" x2="263" y2="140" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="462" y1="140" x2="498" y2="140" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="697" y1="140" x2="733" y2="140" stroke="#1b2733" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M832,202 L832,262 L127,262 L127,204" fill="none" stroke="#2f6b4f" stroke-width="2" marker-end="url(#g)"/>
+  <text x="480" y="252" class="g" text-anchor="middle">죽지 않았다면 새 입력을 만들어 다시 ①로</text>
+  <text x="30" y="300" class="x">핵심: 사람이 입력을 하나씩 짜 보는 대신, 기계가 이 반복을 사람이 못 하는 속도로 돌립니다.</text>
+</svg>
