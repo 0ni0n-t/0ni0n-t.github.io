@@ -2,6 +2,7 @@
 title: "[Bug Bounty] 퍼징으로 QEMU 메모리 버그를 처음 찾아 제보하기까지"
 category: bug-bounty
 sub: "방법론"
+published: false
 description: "QEMU 소스를 퍼징으로 분석해 USB 에뮬레이션에서 메모리 안전 버그를 찾고 개발팀에 제보하기까지의 과정을, 공부하며 떠오른 질문을 따라 정리합니다. 아직 수정 전이라 책임공개 원칙에 따라 세부 트리거와 재현 방법은 적지 않습니다."
 ---
 
