@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 452" width="470" height="452" role="img" aria-label="대상 선정에서 제보까지의 흐름">
+  <style>text{font-family:"Nanum Gothic","Malgun Gothic",sans-serif}</style>
+  <rect x="0" y="0" width="470" height="452" fill="#ffffff"/>
+  <rect x="20" y="14" width="430" height="60" rx="12" fill="#eef2f6" stroke="#dfe6ec"/>
+  <circle cx="52" cy="44" r="15" fill="#1e3650"/>
+  <text x="52" y="49" text-anchor="middle" font-size="15" font-weight="800" fill="#ffffff">1</text>
+  <text x="80" y="40" font-size="13.5" font-weight="700" fill="#1b2733">대상 좁히기</text>
+  <text x="80" y="60" font-size="12" fill="#5c6b7a">입구가 많은 USB 컨트롤러 에뮬레이션</text>
+  <line x1="235" y1="74" x2="235" y2="92" stroke="#5c6b7a" stroke-width="2"/>
+  <polygon points="230,92 235,102 240,92" fill="#5c6b7a"/>
+  <rect x="20" y="104" width="430" height="60" rx="12" fill="#eef2f6" stroke="#dfe6ec"/>
+  <circle cx="52" cy="134" r="15" fill="#1e3650"/>
+  <text x="52" y="139" text-anchor="middle" font-size="15" font-weight="800" fill="#ffffff">2</text>
+  <text x="80" y="130" font-size="13.5" font-weight="700" fill="#1b2733">퍼징으로 크래시 모으기</text>
+  <text x="80" y="150" font-size="12" fill="#5c6b7a">자체 퍼징 도구 + libFuzzer + ASan, 격리 환경</text>
+  <line x1="235" y1="164" x2="235" y2="182" stroke="#5c6b7a" stroke-width="2"/>
+  <polygon points="230,182 235,192 240,182" fill="#5c6b7a"/>
+  <rect x="20" y="194" width="430" height="70" rx="12" fill="#eef2f6" stroke="#dfe6ec"/>
+  <circle cx="52" cy="229" r="15" fill="#1e3650"/>
+  <text x="52" y="234" text-anchor="middle" font-size="15" font-weight="800" fill="#ffffff">3</text>
+  <text x="80" y="220" font-size="13.5" font-weight="700" fill="#1b2733">진짜 버그만 골라내기</text>
+  <text x="80" y="239" font-size="12" fill="#5c6b7a">자원·도구·타임아웃은 제외</text>
+  <text x="80" y="256" font-size="12" fill="#a63d2f">메모리 오류 1건(use-after-free)만 선별</text>
+  <line x1="235" y1="264" x2="235" y2="282" stroke="#5c6b7a" stroke-width="2"/>
+  <polygon points="230,282 235,292 240,282" fill="#5c6b7a"/>
+  <rect x="20" y="294" width="430" height="60" rx="12" fill="#eef2f6" stroke="#dfe6ec"/>
+  <circle cx="52" cy="324" r="15" fill="#1e3650"/>
+  <text x="52" y="329" text-anchor="middle" font-size="15" font-weight="800" fill="#ffffff">4</text>
+  <text x="80" y="320" font-size="13.5" font-weight="700" fill="#1b2733">이미 알려진 건지 대조</text>
+  <text x="80" y="340" font-size="12" fill="#5c6b7a">공개 사례와 비교, 최신 릴리스에서도 재현</text>
+  <line x1="235" y1="354" x2="235" y2="372" stroke="#5c6b7a" stroke-width="2"/>
+  <polygon points="230,372 235,382 240,372" fill="#5c6b7a"/>
+  <rect x="20" y="384" width="430" height="60" rx="12" fill="#f6f8fa" stroke="#2f6b4f" stroke-width="2"/>
+  <circle cx="52" cy="414" r="15" fill="#2f6b4f"/>
+  <text x="52" y="419" text-anchor="middle" font-size="15" font-weight="800" fill="#ffffff">5</text>
+  <text x="80" y="410" font-size="13.5" font-weight="700" fill="#1b2733">책임공개로 제보</text>
+  <text x="80" y="430" font-size="12" fill="#5c6b7a">QEMU 에 비공개 이슈로 제출</text>
+</svg>
