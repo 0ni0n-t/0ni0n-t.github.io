@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-labelledby="t d">
+  <title id="t">쿠팡 개인정보 유출 사고 타임라인</title>
+  <desc id="d">퇴사 뒤에도 무효화되지 않은 서명 키로 위조한 전자 출입증이 쓰인 공격 기간, 2025년 11월 17일(정부 정리) 또는 18일(쿠팡 공지) 인지, 11월 19일 신고와 자료보전 명령 뒤 22시 34분에 확인된 로그 삭제, 11월 29일 쿠팡 공지, 2026년 2월 10일 정부 조사 결과, 2026년 6월 10일 과징금 의결까지의 순서. 번호 1부터 7은 본문 순서 목록과 같다. 퇴사 시점과 공격 시작일은 보도로만 확인되어 미확인으로 표시했다.</desc>
+  <style>
+    text { font-family: "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; fill: #1b2733; }
+    .h { font-size: 17px; font-weight: 800; }
+    .b { font-size: 14px; font-weight: 700; }
+    .s { font-size: 12px; }
+    .x { font-size: 11.5px; fill: #4a5866; }
+    .st { font-size: 13px; font-weight: 700; }
+  </style>
+  <rect width="960" height="420" fill="#ffffff"/>
+  <text x="20" y="32" class="h">사고 타임라인: 퇴사 뒤에도 남은 서명 키에서 과징금까지</text>
+  <line x1="20" y1="82" x2="940" y2="82" stroke="#c7d2dc" stroke-width="2"/>
+
+  <text x="20" y="74" class="x">2024-11경</text>
+  <text x="154" y="74" class="x">2025-04-14부터</text>
+  <text x="288" y="74" class="x">2025-11-17 16:00</text>
+  <text x="422" y="74" class="x">2025-11-19 21:35</text>
+  <text x="556" y="74" class="x">2025-11-29</text>
+  <text x="690" y="74" class="x">2026-02-10</text>
+  <text x="824" y="74" class="x">2026-06-10</text>
+
+  <rect x="20" y="100" width="116" height="150" rx="6" fill="#ffe9d9" stroke="#94481c" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <text x="30" y="122" class="st" style="fill:#94481c">① 퇴사</text>
+  <text x="30" y="144" class="s">인증 시스템</text>
+  <text x="30" y="160" class="s">개발자였던</text>
+  <text x="30" y="176" class="s">직원이 퇴사</text>
+  <text x="30" y="192" class="s">시점은 보도</text>
+  <text x="30" y="208" class="s">(보도, 미확인)</text>
+
+  <rect x="154" y="100" width="116" height="150" rx="6" fill="#ffe9d9" stroke="#94481c" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <text x="164" y="122" class="st" style="fill:#94481c">② 공격 기간</text>
+  <text x="164" y="144" class="s">무효화 안 된</text>
+  <text x="164" y="160" class="s">서명 키로 위조</text>
+  <text x="164" y="176" class="s">한 출입증 사용</text>
+  <text x="164" y="192" class="s">시작일 04-14</text>
+  <text x="164" y="208" class="s">(보도, 미확인)</text>
+
+  <rect x="288" y="100" width="116" height="150" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="1.6"/>
+  <text x="298" y="122" class="st" style="fill:#1e3650">③ 인지</text>
+  <text x="298" y="144" class="s">정부 정리 11-17</text>
+  <text x="298" y="160" class="s">쿠팡 공지 11-18</text>
+  <text x="298" y="180" class="s">초기 신고 규모</text>
+  <text x="298" y="196" class="s">약 4,536계정</text>
+  <text x="298" y="212" class="s">(출처별 날짜)</text>
+
+  <rect x="422" y="100" width="116" height="150" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="1.6"/>
+  <text x="432" y="122" class="st" style="fill:#1e3650">④ KISA 신고</text>
+  <text x="432" y="144" class="s">인지 뒤 24시간</text>
+  <text x="432" y="160" class="s">초과</text>
+  <text x="432" y="180" class="s">보전 명령 이후</text>
+  <text x="432" y="196" class="s">22:34 로그 삭제</text>
+  <text x="432" y="212" class="s">가 확인됨</text>
+
+  <rect x="556" y="100" width="116" height="150" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="1.6"/>
+  <text x="566" y="122" class="st" style="fill:#1e3650">⑤ 공개</text>
+  <text x="566" y="144" class="s">쿠팡 공지(11-29)</text>
+  <text x="566" y="160" class="s">약 3,370만 계정</text>
+  <text x="566" y="176" class="s">노출 발표</text>
+  <text x="566" y="196" class="s">검토자 열람 확인</text>
+
+  <rect x="690" y="100" width="116" height="150" rx="6" fill="#eef5f1" stroke="#2f6b4f" stroke-width="2"/>
+  <text x="700" y="122" class="st" style="fill:#2f6b4f">⑥ 정부 결과</text>
+  <text x="700" y="144" class="s">과기정통부</text>
+  <text x="700" y="160" class="s">조사 결과 발표</text>
+  <text x="700" y="176" class="s">수정 페이지</text>
+  <text x="700" y="192" class="s">약 3,367만 건</text>
+
+  <rect x="824" y="100" width="116" height="150" rx="6" fill="#eef5f1" stroke="#2f6b4f" stroke-width="2"/>
+  <text x="834" y="122" class="st" style="fill:#2f6b4f">⑦ 과징금</text>
+  <text x="834" y="144" class="s">개인정보위</text>
+  <text x="834" y="160" class="s">의결</text>
+  <text x="834" y="176" class="s">6,246억</text>
+  <text x="834" y="192" class="s">8,100만 원</text>
+
+  <line x1="136" y1="175" x2="152" y2="175" stroke="#1b2733" stroke-width="1.6"/>
+  <line x1="270" y1="175" x2="286" y2="175" stroke="#1b2733" stroke-width="1.6"/>
+  <line x1="404" y1="175" x2="420" y2="175" stroke="#1b2733" stroke-width="1.6"/>
+  <line x1="538" y1="175" x2="554" y2="175" stroke="#1b2733" stroke-width="1.6"/>
+  <line x1="672" y1="175" x2="688" y2="175" stroke="#1b2733" stroke-width="1.6"/>
+  <line x1="806" y1="175" x2="822" y2="175" stroke="#1b2733" stroke-width="1.6"/>
+
+  <rect x="20" y="272" width="920" height="52" rx="6" fill="#ffffff" stroke="#a63d2f" stroke-dasharray="6 4"/>
+  <text x="34" y="293" class="b" style="fill:#a63d2f">점선 상자는 날짜를 확인하지 못한 단계(①, ②)</text>
+  <text x="34" y="312" class="s">퇴사 시점과 공격 시작일은 언론 보도에만 있고 정부 발표에서 확인하지 못했습니다.</text>
+
+  <rect x="20" y="340" width="900" height="62" rx="6" fill="#eff2f5" stroke="#c7d2dc"/>
+  <text x="34" y="360" class="x">③의 11-17과 ④, ⑥은 과기정통부 조사 결과(정책뉴스), ③의 11-18과 ⑤는 쿠팡 공지(2025-11-29), ⑦은 개인정보위 발표(2026-06-16 게시, 의결 06-10)에서 확인한 날짜와 금액입니다.</text>
+  <text x="34" y="378" class="x">단계 사이의 선은 시간 순서만 나타냅니다. 4,536은 초기 신고 규모이고 기관별 수치는 집계 범위가 달라 본문 4절에서 따로 읽습니다.</text>
+  <text x="34" y="394" class="x">출처: 과기정통부 조사 결과, 개인정보위 과징금 발표, 보도(KEIA, 2026-02-22). 자세한 링크는 본문 참고 절에 있습니다.</text>
+</svg>

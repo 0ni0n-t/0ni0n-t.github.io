@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" role="img" aria-labelledby="t d">
+  <title id="t">Qubole 경유 침해 공격 경로</title>
+  <desc id="d">Qubole의 AWS 계정에 속한 IAM 사용자 자격 증명이 어떻게 탈취됐는지는 확인되지 않았고, 이 자격 증명으로 고객 계정의 연동 역할을 올바른 External ID와 함께 AssumeRole 했으며, 비밀값을 읽고 S3 데이터를 내려받았고, 피해 고객 쪽 보안 업체가 탐지해 11월 9일 공개되기까지의 순서. 번호 1부터 5는 본문 순서 목록과 같다.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1b2733"/></marker>
+  </defs>
+  <style>
+    text { font-family: "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; fill: #1b2733; }
+    .h { font-size: 17px; font-weight: 800; }
+    .b { font-size: 14px; font-weight: 700; }
+    .s { font-size: 12.5px; }
+    .x { font-size: 11.5px; fill: #4a5866; }
+    .st { font-size: 13px; font-weight: 700; }
+  </style>
+  <rect width="960" height="400" fill="#ffffff"/>
+  <text x="20" y="32" class="h">침입 경로: 벤더 계정의 자격 증명으로 고객이 신뢰해 둔 역할을 맡음</text>
+
+  <line x1="40" y1="70" x2="920" y2="70" stroke="#c7d2dc" stroke-width="2"/>
+  <text x="40" y="60" class="x">10/14 첫 AssumeRole</text>
+  <text x="250" y="60" class="x">10/18 두 번째 IAM 사용자</text>
+  <text x="520" y="60" class="x">10/26 마지막 관측</text>
+  <text x="940" y="60" text-anchor="end" class="x">11/9 Wiz·Sentra 공개</text>
+
+  <rect x="20" y="100" width="150" height="120" rx="6" fill="#ffe9d9" stroke="#94481c" stroke-width="1.6"/>
+  <text x="32" y="124" class="st" style="fill:#94481c">① Qubole 계정 자격 증명</text>
+  <text x="32" y="146" class="s">IAM 사용자 2개의 자격</text>
+  <text x="32" y="162" class="s">증명이 쓰임. 어떻게</text>
+  <text x="32" y="178" class="s">얻었는지는 확인되지</text>
+  <text x="32" y="194" class="s">않음 (경로 미확인)</text>
+
+  <rect x="200" y="100" width="150" height="120" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="1.6"/>
+  <text x="212" y="124" class="st" style="fill:#1e3650">② 고객 연동 역할</text>
+  <text x="212" y="146" class="s">올바른 External ID를</text>
+  <text x="212" y="162" class="s">넣어 AssumeRole, 전부</text>
+  <text x="212" y="178" class="s">성공. 세션 이름은</text>
+  <text x="212" y="194" class="s">quiam- 으로 시작</text>
+
+  <rect x="380" y="100" width="160" height="120" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="1.6"/>
+  <text x="392" y="124" class="st" style="fill:#1e3650">③ 열거와 비밀값 읽기</text>
+  <text x="392" y="146" class="s">Lambda 환경변수,</text>
+  <text x="392" y="162" class="s">Secrets Manager, SSM</text>
+  <text x="392" y="178" class="s">Parameter Store의</text>
+  <text x="392" y="194" class="s">비밀값을 읽음</text>
+
+  <rect x="570" y="100" width="170" height="120" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="1.6"/>
+  <text x="582" y="124" class="st" style="fill:#1e3650">④ S3 데이터</text>
+  <text x="582" y="146" class="s">객체를 내려받음. 일부</text>
+  <text x="582" y="162" class="s">세션은 버킷 전체.</text>
+  <text x="582" y="178" class="s">쓰기 0건 (Sentra가 관측·</text>
+  <text x="582" y="194" class="s">보고한 범위에서)</text>
+
+  <rect x="770" y="100" width="170" height="120" rx="6" fill="#eef5f1" stroke="#2f6b4f" stroke-width="2"/>
+  <text x="782" y="124" class="st" style="fill:#2f6b4f">⑤ 탐지</text>
+  <text x="782" y="146" class="s">피해 고객 쪽 보안 업체</text>
+  <text x="782" y="162" class="s">Sentra가 탐지(날짜 미상)</text>
+  <text x="782" y="178" class="s">Qubole 측 공지는 찾지</text>
+  <text x="782" y="194" class="s">못함</text>
+
+  <line x1="170" y1="160" x2="198" y2="160" stroke="#1b2733" stroke-width="1.6" marker-end="url(#a)"/>
+  <line x1="350" y1="160" x2="378" y2="160" stroke="#1b2733" stroke-width="1.6" marker-end="url(#a)"/>
+  <line x1="540" y1="160" x2="568" y2="160" stroke="#1b2733" stroke-width="1.6" marker-end="url(#a)"/>
+  <line x1="740" y1="160" x2="768" y2="160" stroke="#2f6b4f" stroke-width="1.6" marker-end="url(#a)"/>
+
+  <path d="M200,230 L200,238 L740,238 L740,230" fill="none" stroke="#4a5866" stroke-width="1.4"/>
+  <text x="470" y="254" text-anchor="middle" class="x">②~④ 활동 기간 10/14~10/26 (Wiz 관측)</text>
+
+  <rect x="20" y="268" width="920" height="52" rx="6" fill="#ffffff" stroke="#a63d2f" stroke-dasharray="6 4"/>
+  <text x="34" y="289" class="b" style="fill:#a63d2f">10/8~11 별개로 보이는 활동</text>
+  <text x="34" y="308" class="s">고객 소유 AWS 액세스 키를 시험한 활동이 따로 있었고, Wiz는 이 건과 연결하지 못함</text>
+
+  <rect x="20" y="332" width="920" height="50" rx="6" fill="#eff2f5" stroke="#c7d2dc"/>
+  <text x="34" y="352" class="x">신뢰 정책은 연동을 쓰지 않게 된 뒤에도 남아 있던 고객이 많았다고 보도됐습니다. 피해 조직 수와 최초 침입 경로는 확인되지 않았습니다.</text>
+  <text x="34" y="370" class="x">출처: Wiz(2026-11-09, 11-11 갱신), Sentra(2026-11-09), The Register. 정확한 피해 수와 Qubole 측 대응은 공식 공지를 찾지 못했습니다.</text>
+</svg>

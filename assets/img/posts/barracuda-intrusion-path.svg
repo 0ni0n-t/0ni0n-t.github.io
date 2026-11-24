@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" role="img" aria-labelledby="t d">
+  <title id="t">Barracuda 침입 경로 타임라인</title>
+  <desc id="d">외주 업체에 준 클라우드 액세스 키가 업체 개발 환경 침해에서 얻어진 것으로 보이며, 이 키로 클라우드 계정의 비밀값을 읽고, 데이터 분석 시스템, 소스 코드 접근 토큰, Kubernetes 클러스터로 넘어간 뒤, 11월 4일 직원 신고로 발견되어 태평양 시간 저녁에 컨테이너가 제거되고 이후 자격 증명이 교체되기까지의 순서. 번호 1부터 5는 본문 순서 목록과 같다.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1b2733"/></marker>
+  </defs>
+  <style>
+    text { font-family: "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; fill: #1b2733; }
+    .h { font-size: 17px; font-weight: 800; }
+    .b { font-size: 14px; font-weight: 700; }
+    .s { font-size: 12.5px; }
+    .x { font-size: 11.5px; fill: #4a5866; }
+    .st { font-size: 13px; font-weight: 700; }
+  </style>
+  <rect width="960" height="400" fill="#ffffff"/>
+  <text x="20" y="32" class="h">침입 경로: 키 하나에서 시작해 비밀값을 이어 쓰며 넘어감</text>
+
+  <!-- 시간 축 -->
+  <line x1="40" y1="70" x2="920" y2="70" stroke="#c7d2dc" stroke-width="2"/>
+  <text x="40" y="60" class="x">10월 (일자 미상)</text>
+  <text x="200" y="60" class="x">11/1 04:33 UTC 첫 호출</text>
+  <text x="480" y="60" class="x">11/2 23:31 UTC 마지막 기록 활동</text>
+  <text x="940" y="60" text-anchor="end" class="x">11/4 신고, 제거 (태평양 시간)</text>
+
+  <!-- 1 -->
+  <rect x="20" y="100" width="150" height="120" rx="6" fill="#ffe9d9" stroke="#94481c" stroke-width="1.6"/>
+  <text x="32" y="124" class="st" style="fill:#94481c">① 업체에 준 키</text>
+  <text x="32" y="146" class="s">과거 프로젝트용 키가</text>
+  <text x="32" y="162" class="s">폐기되지 않았고, 업체</text>
+  <text x="32" y="178" class="s">환경 침해에서 얻은 것</text>
+  <text x="32" y="194" class="s">으로 보임 (추정)</text>
+
+  <!-- 2 -->
+  <rect x="200" y="100" width="150" height="120" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="1.6"/>
+  <text x="212" y="124" class="st" style="fill:#1e3650">② 클라우드 계정</text>
+  <text x="212" y="146" class="s">자원 목록을 훑고 저장된</text>
+  <text x="212" y="162" class="s">비밀값(AWS 키, Azure</text>
+  <text x="212" y="178" class="s">서비스 주체 비밀)을 읽음</text>
+
+  <!-- 3 -->
+  <rect x="380" y="100" width="160" height="120" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="1.6"/>
+  <text x="392" y="124" class="st" style="fill:#1e3650">③ 데이터 분석 시스템</text>
+  <text x="392" y="146" class="s">읽은 비밀값을 이어 써서</text>
+  <text x="392" y="162" class="s">다음 시스템으로 넘어감</text>
+
+  <!-- 4 -->
+  <rect x="570" y="100" width="170" height="120" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="1.6"/>
+  <text x="582" y="124" class="st" style="fill:#1e3650">④ 토큰과 클러스터</text>
+  <text x="582" y="146" class="s">소스 코드 접근 토큰을</text>
+  <text x="582" y="162" class="s">얻고 이어서 Kubernetes</text>
+  <text x="582" y="178" class="s">클러스터까지 도달</text>
+
+  <!-- 5 -->
+  <rect x="770" y="100" width="170" height="120" rx="6" fill="#eef5f1" stroke="#2f6b4f" stroke-width="2"/>
+  <text x="782" y="124" class="st" style="fill:#2f6b4f">⑤ 발견과 차단</text>
+  <text x="782" y="146" class="s">직원 신고(11/4). 저녁</text>
+  <text x="782" y="162" class="s">(태평양 시간) 컨테이너</text>
+  <text x="782" y="178" class="s">제거, 이후 자격 증명</text>
+  <text x="782" y="194" class="s">교체</text>
+
+  <line x1="170" y1="160" x2="198" y2="160" stroke="#1b2733" stroke-width="1.6" marker-end="url(#a)"/>
+  <line x1="350" y1="160" x2="378" y2="160" stroke="#1b2733" stroke-width="1.6" marker-end="url(#a)"/>
+  <line x1="540" y1="160" x2="568" y2="160" stroke="#1b2733" stroke-width="1.6" marker-end="url(#a)"/>
+  <line x1="740" y1="160" x2="768" y2="160" stroke="#2f6b4f" stroke-width="1.6" marker-end="url(#a)"/>
+
+  <!-- ③~④ 약 24시간 -->
+  <path d="M380,230 L380,238 L740,238 L740,230" fill="none" stroke="#4a5866" stroke-width="1.4"/>
+  <text x="560" y="254" text-anchor="middle" class="x">③~④ 구간, 11/1~2 약 24시간</text>
+
+  <!-- 보조 -->
+  <rect x="20" y="268" width="920" height="52" rx="6" fill="#ffffff" stroke="#a63d2f" stroke-dasharray="6 4"/>
+  <text x="34" y="289" class="b" style="fill:#a63d2f">11/2 초반 약 4시간</text>
+  <text x="34" y="308" class="s">여러 저장소에 단명 브랜치를 올려 빌드 워크플로가 비밀값을 작업 로그에 찍게 함 (인코딩으로 로그 가리기를 피함)</text>
+
+  <rect x="20" y="332" width="920" height="50" rx="6" fill="#eff2f5" stroke="#c7d2dc"/>
+  <text x="34" y="352" class="x">Barracuda는 공격자가 유효한 클라우드 액세스 키로 들어왔다고 설명합니다. 직원이 신고한 시점에 활동은 이미 끝나 있었습니다.</text>
+  <text x="34" y="370" class="x">출처: Barracuda 블로그(2026-11-11)와 Trust Center 공지. 업체 침해는 10월(일자 미상), 키를 거기서 얻었다는 연결은 공식 글의 추정입니다.</text>
+</svg>
