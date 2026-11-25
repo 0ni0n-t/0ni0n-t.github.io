@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" role="img" aria-labelledby="t d">
+<title id="t">ECS on EC2 실습 지도</title>
+<desc id="d">같은 EC2 인스턴스 위의 low 태스크와 high 태스크, ecs-agent, 태스크 자격 증명 엔드포인트와 IMDS, 확인한 두 차단 지점, CloudTrail 기록, Fargate 비교.</desc>
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e3650"/></marker>
+<marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f6b4f"/></marker>
+<marker id="o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94481c"/></marker>
+</defs>
+<style>
+text { font-family: "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; fill: #1b2733; }
+.h { font-size: 16px; font-weight: 800; }
+.b { font-size: 14px; font-weight: 700; }
+.s { font-size: 12.5px; }
+.x { font-size: 11.5px; fill: #4a5866; }
+.m { font-family: "Nanum Gothic Coding", Consolas, Menlo, monospace; font-size: 12px; }
+.w { fill: #ffffff; }
+</style>
+<rect width="960" height="520" fill="#ffffff"/>
+<rect x="20" y="30" width="480" height="430" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="2"/>
+<text x="40" y="56" class="b">EC2 컨테이너 인스턴스 (ECS on EC2, bridge 모드)</text>
+<rect x="40" y="110" width="180" height="130" rx="5" fill="#ffffff" stroke="#c7d2dc" stroke-width="1.6"/>
+<text x="130" y="136" class="b" text-anchor="middle">low 태스크</text>
+<text x="130" y="154" class="m" text-anchor="middle">ecscape-low</text>
+<text x="130" y="172.5" class="s" text-anchor="middle">태스크 역할</text>
+<text x="130" y="188" class="s" text-anchor="middle">ecscape-lab-task-role</text>
+<text x="130" y="205.5" class="x" text-anchor="middle">s3:ListAllMyBuckets 만 허용</text>
+<rect x="40" y="290" width="180" height="130" rx="5" fill="#ffffff" stroke="#c7d2dc" stroke-width="1.6"/>
+<text x="130" y="316" class="b" text-anchor="middle">high 태스크</text>
+<text x="130" y="334" class="m" text-anchor="middle">ecscape-high</text>
+<text x="130" y="352.5" class="s" text-anchor="middle">태스크 역할</text>
+<text x="130" y="368" class="s" text-anchor="middle">ecscape-lab-high-role</text>
+<text x="130" y="385.5" class="x" text-anchor="middle">ec2:DescribeInstances 만 허용</text>
+<rect x="265" y="110" width="215" height="95" rx="5" fill="#e3efe8" stroke="#2f6b4f" stroke-width="1.6"/>
+<text x="372.5" y="136" class="b" text-anchor="middle">태스크 자격 증명 엔드포인트</text>
+<text x="372.5" y="154" class="m" text-anchor="middle">169.254.170.2</text>
+<text x="372.5" y="171.5" class="x" text-anchor="middle">태스크마다 자기 역할의 자격 증명</text>
+<rect x="265" y="290" width="215" height="130" rx="5" fill="#ffe9d9" stroke="#94481c" stroke-width="1.6"/>
+<text x="372.5" y="316" class="b" text-anchor="middle">ecs-agent (컨테이너)</text>
+<text x="372.5" y="334.5" class="s" text-anchor="middle">인스턴스 역할</text>
+<text x="372.5" y="350" class="s" text-anchor="middle">ecscape-lab-instance-role</text>
+<text x="372.5" y="367.5" class="x" text-anchor="middle">ECS 에이전트용 관리형 정책 연결</text>
+<rect x="540" y="110" width="400" height="95" rx="5" fill="#ffe9d9" stroke="#94481c" stroke-width="1.6"/>
+<text x="740" y="136" class="b" text-anchor="middle">IMDS 169.254.169.254</text>
+<text x="740" y="154.5" class="s" text-anchor="middle">IMDSv2 필수, hop limit 2 로 시작</text>
+<text x="740" y="172" class="x" text-anchor="middle">컨테이너에서 도달하면 인스턴스 역할 이름까지 조회됨</text>
+<rect x="540" y="225" width="400" height="80" rx="5" fill="#ffffff" stroke="#1e3650" stroke-width="1.6"/>
+<text x="740" y="251" class="b" text-anchor="middle">CloudTrail 이벤트 기록</text>
+<text x="740" y="269.5" class="s" text-anchor="middle">사용자 이름 = 태스크 역할 / 태스크 ID</text>
+<text x="740" y="287" class="x" text-anchor="middle">inScopeOf.issuerType = AWS::ECS::Task</text>
+<rect x="540" y="330" width="400" height="110" rx="5" fill="#ffffff" stroke="#1e3650" stroke-width="1.6" stroke-dasharray="7 5"/>
+<text x="740" y="356" class="b" text-anchor="middle">비교: Fargate 태스크 (awsvpc)</text>
+<text x="740" y="374.5" class="s" text-anchor="middle">인스턴스를 공유하지 않는 태스크 단위 격리</text>
+<text x="740" y="392.5" class="m" text-anchor="middle">IMDS: http=000 exit=7</text>
+<text x="740" y="410.5" class="m" text-anchor="middle">자격 증명 엔드포인트: http=200</text>
+<path d="M220,150 H256" stroke="#2f6b4f" stroke-width="2.2" fill="none"/><polygon points="264,150 255,145 255,155" fill="#2f6b4f"/>
+<path d="M220,330 H246 V150" stroke="#2f6b4f" stroke-width="2.2" fill="none"/>
+<circle cx="243" cy="128" r="11" fill="#2f6b4f"/><text x="243" y="132.5" class="b w" text-anchor="middle">1</text>
+<path d="M130,110 V82 H740 V101" stroke="#94481c" stroke-width="2.2" stroke-dasharray="6 4" fill="none"/><polygon points="740,109 735,100 745,100" fill="#94481c"/>
+<circle cx="150" cy="82" r="11" fill="#94481c"/><text x="150" y="86.5" class="b w" text-anchor="middle">2</text>
+<path d="M323,75 L337,89 M337,75 L323,89" stroke="#a63d2f" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="360" cy="82" r="11" fill="#a63d2f"/><text x="360" y="86.5" class="b w" text-anchor="middle">4</text>
+<path d="M593,75 L607,89 M607,75 L593,89" stroke="#a63d2f" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="630" cy="82" r="11" fill="#a63d2f"/><text x="630" y="86.5" class="b w" text-anchor="middle">3</text>
+<text x="375" y="70" class="x" style="fill:#a63d2f">DOCKER-USER DROP</text>
+<text x="645" y="70" class="x" style="fill:#a63d2f">hop limit 1</text>
+<path d="M220,225 H531" stroke="#1e3650" stroke-width="2" fill="none"/><polygon points="539,225 530,220 530,230" fill="#1e3650"/>
+<circle cx="480" cy="225" r="11" fill="#1e3650"/><text x="480" y="229.5" class="b w" text-anchor="middle">5</text>
+<text x="285" y="245" class="x">ListBuckets 호출</text>
+<circle cx="556" cy="346" r="11" fill="#1e3650"/><text x="556" y="350.5" class="b w" text-anchor="middle">6</text>
+<text x="40" y="485" class="x">초록 실선: 정상 경로  /  주황 점선: 컨테이너에서 IMDS 로 가려는 경로  /  빨강 X: 확인한 차단 지점</text>
+<text x="40" y="503" class="x">그림 번호는 본문의 실습 단계 목록과 같습니다. 단계 A 는 이 환경을 만드는 단계입니다.</text>
+</svg>
