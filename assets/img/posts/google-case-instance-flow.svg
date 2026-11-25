@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 344" role="img" aria-labelledby="t d">
+  <title id="t">심급별 결론 흐름</title>
+  <desc id="d">1심 서울중앙지법, 항소심 서울고법, 대법원 순으로 당사자별 결론이 어떻게 이어졌는지 보여 주는 그림. 대법원은 원심의 원고 1, 2 패소 부분 중 Google LLC에 대한 부분을 파기환송했고 나머지 상고는 기각했다.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e3650"/></marker>
+  </defs>
+  <style>
+    text { font-family: "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; fill: #1b2733; }
+    .h { font-size: 17px; font-weight: 800; }
+    .st { font-size: 13.5px; font-weight: 700; }
+    .s { font-size: 12.5px; }
+    .x { font-size: 11.5px; fill: #4a5866; }
+  </style>
+  <rect width="960" height="344" fill="#ffffff"/>
+  <text x="20" y="32" class="h">심급별 결론: 대법원은 원고 1, 2의 Google LLC 상대 패소 부분을 파기했습니다</text>
+  <rect x="20" y="60" width="285" height="264" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="1.6"/>
+  <text x="32" y="84" class="st" style="fill:#1e3650">1심 서울중앙지법</text>
+  <text x="32" y="106" class="s">2014가합38116</text>
+  <text x="32" y="124" class="s">선고 2015. 10. 16. (비공식 게재본)</text>
+  <text x="32" y="150" class="s" style="fill:#1e3650;font-weight:700">원고 1·2·5·6에게</text>
+  <text x="32" y="168" class="s">Google Inc.: 미국 법령상 비공개 의무 사항을 뺀</text>
+  <text x="32" y="186" class="s">나머지 공개</text>
+  <text x="32" y="212" class="s">원고 3·4의 Google Inc. 상대 소: 각하</text>
+  <text x="32" y="238" class="s">원고 1·2·5·6의 Google Inc. 상대</text>
+  <text x="32" y="256" class="s">나머지 청구: 기각</text>
+  <text x="32" y="282" class="s">원고들의 구글코리아 상대 청구: 기각 (손해배상</text>
+  <text x="32" y="300" class="s">청구 포함)</text>
+  <rect x="337" y="60" width="285" height="264" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="1.6"/>
+  <text x="349" y="84" class="st" style="fill:#1e3650">항소심 서울고법</text>
+  <text x="349" y="106" class="s">2015나2065729</text>
+  <text x="349" y="124" class="s">선고 2017. 2. 16.</text>
+  <text x="349" y="142" class="s">대법원 판결문의 요약 기준</text>
+  <text x="349" y="168" class="s">원고 1·2의 구글 상대: 미국 법령상 비공개 사항을</text>
+  <text x="349" y="186" class="s">뺀 나머지 공개</text>
+  <text x="349" y="212" class="s">원고 3·4의 구글 상대 소: 부적법</text>
+  <text x="349" y="238" class="s">구글코리아: 위치정보 관련 제공자로서 수집·보유</text>
+  <text x="349" y="256" class="s">범위에서 공개 의무 인정</text>
+  <text x="349" y="282" class="s">원고 1~4의 구글코리아 상대 위자료: 불인정</text>
+  <rect x="655" y="60" width="285" height="264" rx="6" fill="#ffe9d9" stroke="#94481c" stroke-width="1.6"/>
+  <text x="667" y="84" class="st" style="fill:#94481c">대법원</text>
+  <text x="667" y="106" class="s">2017다219232</text>
+  <text x="667" y="124" class="s">선고 2023. 4. 13.</text>
+  <text x="667" y="150" class="s" style="fill:#a63d2f;font-weight:700">원고 1·2 패소 부분 중 Google LLC 부분(위자료</text>
+  <text x="667" y="168" class="s" style="fill:#a63d2f;font-weight:700">청구 부분 포함): 파기환송</text>
+  <text x="667" y="186" class="s">미국 법령이 있다는 사정만으로는 거부가</text>
+  <text x="667" y="204" class="s">정당하다고 볼 수 없음</text>
+  <text x="667" y="230" class="s" style="fill:#2f6b4f;font-weight:700">상고 기각 (원심 유지)</text>
+  <text x="667" y="248" class="s">원고 1·2의 구글코리아 상고, 원고 3·4의 피고들</text>
+  <text x="667" y="266" class="s">상고, Google LLC의 원고 1·2 상고, 구글코리아의</text>
+  <text x="667" y="284" class="s">원고들 상고</text>
+  <line x1="305" y1="183" x2="335" y2="183" stroke="#1e3650" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="622" y1="183" x2="653" y2="183" stroke="#1e3650" stroke-width="2" marker-end="url(#a)"/>
+</svg>

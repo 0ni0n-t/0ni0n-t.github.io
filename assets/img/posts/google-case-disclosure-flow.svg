@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 414" role="img" aria-labelledby="t d">
+  <title id="t">이용자 구글 미국 수사기관 사이 정보 흐름</title>
+  <desc id="d">한국 이용자가 구글에 제3자 제공 현황 열람을 요구하고, 구글은 미국 법령상 비공개 의무가 있다는 이유로 거부할 수 있는지가 쟁점이다. 대법원은 법령의 존재만으로는 부족하고 요건 충족, 항목과 사유의 특정, 수사 종료 뒤 공개를 요구했다. 구글이 실제로 수사기관에 정보를 제공했는지는 판결문에 나오지 않아 점선으로 그렸다.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e3650"/></marker>
+  </defs>
+  <style>
+    text { font-family: "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; fill: #1b2733; }
+    .h { font-size: 17px; font-weight: 800; }
+    .st { font-size: 13.5px; font-weight: 700; }
+    .s { font-size: 12.5px; }
+    .x { font-size: 11.5px; fill: #4a5866; }
+  </style>
+  <rect width="960" height="414" fill="#ffffff"/>
+  <text x="20" y="32" class="h">정보 흐름: 열람 요구와 미국 법령상 비공개 의무가 부딪히는 자리</text>
+  <rect x="20" y="70" width="230" height="104" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="1.6"/>
+  <text x="32" y="94" class="st" style="fill:#1e3650">한국 이용자 (원고 1, 2)</text>
+  <text x="32" y="116" class="s">개인정보와 서비스 이용 내역의 제3자</text>
+  <text x="32" y="134" class="s">제공 현황을 알려 달라고 요구 (2014.</text>
+  <text x="32" y="152" class="s">2. 17.)</text>
+  <rect x="365" y="70" width="230" height="104" rx="6" fill="#ffe9d9" stroke="#94481c" stroke-width="1.6"/>
+  <text x="377" y="94" class="st" style="fill:#94481c">구글 (미국 법인 구글 LLC)</text>
+  <text x="377" y="116" class="s">구 정보통신망법 제30조에 따른 필요한</text>
+  <text x="377" y="134" class="s">조치 의무가 있는 정보통신서비스</text>
+  <text x="377" y="152" class="s">제공자</text>
+  <rect x="710" y="70" width="230" height="104" rx="6" fill="#eff2f5" stroke="#1e3650" stroke-width="1.6"/>
+  <text x="722" y="94" class="st" style="fill:#1e3650">미국 수사기관 (FBI 등)</text>
+  <text x="722" y="116" class="s">18 U.S.C. § 2709(c)(1), 50 U.S.C. §</text>
+  <text x="722" y="134" class="s">1861(d)가 정한 요건을 갖추면 제공</text>
+  <text x="722" y="152" class="s">사실을 공개하지 않도록 함</text>
+  <line x1="250" y1="130" x2="363" y2="130" stroke="#1e3650" stroke-width="2" marker-end="url(#a)"/>
+  <text x="257" y="118" class="x">열람 요구</text>
+  <line x1="363" y1="170" x2="252" y2="170" stroke="#a63d2f" stroke-width="2" marker-end="url(#a)"/>
+  <text x="262" y="188" class="x" style="fill:#a63d2f">일반 방침만 회신</text>
+  <line x1="595" y1="130" x2="708" y2="130" stroke="#1e3650" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a)"/>
+  <text x="604" y="118" class="x">제공했다면</text>
+  <text x="600" y="150" class="x">(판결문엔 제공</text>
+  <text x="600" y="164" class="x">여부 언급 없음)</text>
+  <rect x="20" y="204" width="920" height="190" rx="6" fill="#ffffff" stroke="#c7d2dc" stroke-width="1.6"/>
+  <text x="32" y="228" class="st" style="fill:#1e3650">대법원이 판시한 점 (판결문 8~11쪽)</text>
+  <text x="32" y="250" class="s" style="fill:#a63d2f;font-weight:700">1. 외국 법령이 있다는 사정만으로는 곧바로 정당한 사유가 되지 않는다</text>
+  <text x="32" y="268" class="s">2. 그 법령의 비공개 요건이 충족되어 실제로 비공개 의무를 지고 있는지, 한국 헌법과 법률의 취지에 맞는지 따진다</text>
+  <text x="32" y="286" class="s">3. 거절하는 항목을 구체적으로 특정하고 거절 사유를 이용자에게 알린다</text>
+  <text x="32" y="304" class="s">4. 수사 등이 끝나 수집 목적에 방해되지 않는 범위는 이용자에게 열람시킨다</text>
+  <text x="32" y="322" class="s" style="fill:#2f6b4f;font-weight:700">원심은 법령의 존재만으로 판단하고 요건과 거절 범위 등을 충분히 심리하지 않아 파기되었습니다</text>
+</svg>

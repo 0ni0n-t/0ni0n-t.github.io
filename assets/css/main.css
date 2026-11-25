@@ -180,3 +180,22 @@ html[data-sidebar="closed"] .sidebar { display: none; }
   .site-header, .post-nav, .sidebar, .sidebar-backdrop, body::before { display: none; }
   .layout { display: block; }
 }
+
+/* 판례 글 인용 출처 펼침 (main.css 끝에 추가). 글 본문은 흰 바탕이라 paper 색을 직접 쓴다 */
+.prose details.src { margin-top: .35rem; font-size: .875rem; color: var(--paper-ink); }
+.prose details.src summary { cursor: pointer; color: var(--cobalt); text-decoration: underline dotted; text-underline-offset: 3px; list-style: none; }
+.prose details.src summary::-webkit-details-marker { display: none; }
+.prose details.src[open] summary { text-decoration: none; font-weight: 700; }
+.prose details.src p, .prose .cite-pop { margin: .4rem 0 0; padding: .6rem .8rem; background: var(--paper-soft); border: 1px solid var(--paper-rule); border-radius: 4px; line-height: 1.65; color: var(--paper-ink); font-size: .875rem; }
+.prose .orig { display: block; color: var(--paper-ink); }
+.prose .orig mark { background: #ffe0c7; color: var(--paper-ink); padding: 0 .1em; box-shadow: inset 0 -2px 0 #f4b183; }
+.prose .where { display: block; margin-top: .4rem; font-size: .8125rem; color: #46576a; }
+.prose .where a { color: var(--cobalt); }
+/* 본문 속 출처 표시: 누르면(포커스) 아래로 원문이 펼쳐진다 */
+.prose .cite { cursor: pointer; }
+.prose .cite-label { color: var(--cobalt); text-decoration: underline dotted; text-underline-offset: 3px; white-space: nowrap; }
+.prose .cite:focus { outline: none; }
+.prose .cite:focus-visible .cite-label { outline: 2px solid var(--cobalt); outline-offset: 2px; }
+.prose .cite-pop { display: none; }
+.prose .cite:focus .cite-pop, .prose .cite:focus-within .cite-pop { display: block; }
+.prose .cite:focus .cite-label, .prose .cite:focus-within .cite-label { font-weight: 700; text-decoration: none; }
